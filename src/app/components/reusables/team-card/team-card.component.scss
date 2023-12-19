@@ -1,0 +1,42 @@
+.main-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95px;
+    width: 100%;
+    border: 2px solid rgb(174, 174, 174);
+    padding: 0 3%;
+
+    .sides {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        h3 {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .sides:nth-child(1) {
+        img {
+            width: 63px;
+            height: 63px;
+            border-radius: 50%;
+        }
+    }
+
+    .sides:nth-child(2) {
+        img {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,266 @@
+<h1 class="main-header">Projects</h1>
+<div class="row btns">
+    <div class="col-8">
+        <button (click)="openModal(newProject)">Add New Project</button>
+        <button>Project List</button>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+<div class="row list">
+    <div class="col-8">
+        <ng-container *ngFor="let work of works; index as i">
+            <app-team-card 
+                [serial]="i+1" 
+                [name]="work.title"
+                [designation]="work.category"
+                [photoLink]="work.photoLink2"
+                [_id]="work._id"
+                [which]="'projects'"
+            /><br>
+        </ng-container>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+
+<ng-template #newProject let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new project</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body row">
+        <div class="form-body col-9">
+            <div class="btn-groups">
+                <button (click)="selectTemplate(1)" [ngClass]="{'template-selection': whichTemplate == 1}">Template 1</button>
+                <button (click)="selectTemplate(2)" [ngClass]="{'template-selection': whichTemplate == 2}">Template 2</button>
+                <button (click)="selectTemplate(3)" [ngClass]="{'template-selection': whichTemplate == 3}">Template 3</button>
+            </div>
+            <br>
+            <ng-container [ngSwitch]="whichTemplate">
+                <ng-container *ngSwitchCase="1">
+                    <ng-container *ngTemplateOutlet="template1"></ng-container>
+                </ng-container>
+                <ng-container *ngSwitchCase="2">
+                    <ng-container *ngTemplateOutlet="template2"></ng-container>
+                </ng-container>
+                <ng-container *ngSwitchCase="3">
+                    <ng-container *ngTemplateOutlet="template3"></ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="preview col-3">
+
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+<ng-template #template1>
+    <div class="main-form">
+        <div class="logos">
+            <img src="../../../assets/svgs/main-logo.svg" alt="studio-logo">
+            <img src="../../../assets/svgs/logout.svg" alt="logout">
+        </div>
+        <br><br>
+
+        <div>
+            <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title"><br>
+            <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+                <option value="Jail">Jail</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Urban">Urban</option>
+                <option value="Mixed Use">Mixed Use</option>
+            </select>
+                <br><br>
+
+            <h4>Section 1</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_1_img + ')', 'background-size': bg_size_1}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+            <br>
+
+            <h4>Section 2</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
+            <br>
+
+            <h4>Section 3</h4><br>
+            <div class="part-images">
+                <div class="indiv-image"
+                    [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
+                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
+                </div>
+                <div class="indiv-image">
+                    <div
+                        [ngStyle]="{'background-image': 'url(' + section_3_img_2 + ')', 'background-size': bg_size_3_2}">
+                        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')">
+                    </div>
+                    <div
+                        [ngStyle]="{'background-image': 'url(' + section_3_img_3 + ')', 'background-size': bg_size_3_3}">
+                        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')">
+                    </div>
+                </div>
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_3"></editor>
+            <br>
+
+            <h4>Section 4</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_4_img + ')', 'background-size': bg_size_4}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_4"></editor>
+            <br><br>
+            <button type="button" *ngIf="!isLoading else loader" class="btn btn-outline-dark" style="border-radius: 0%; padding: 10px 50px;" (click)="submitThings('template1')">Save</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #template2>
+    <div class="main-form">
+        <div class="logos">
+            <img src="../../../assets/svgs/main-logo.svg" alt="studio-logo">
+            <img src="../../../assets/svgs/logout.svg" alt="logout">
+        </div>
+        <br><br>
+
+        <div>
+            <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title"><br>
+            <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+                <option value="Jail">Jail</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Urban">Urban</option>
+                <option value="Mixed Use">Mixed Use</option>
+            </select>
+                <br><br>
+
+            <h4>Section 1</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_1_img + ')', 'background-size': bg_size_1}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+            <br>
+
+            <h4>Section 2</h4><br>
+            <div class="part-images">
+                <div class="indiv-image"
+                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
+                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+                </div>
+                <div class="indiv-image">
+                    <div
+                        [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
+                        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
+                    </div>
+                    <div
+                        [ngStyle]="{'background-image': 'url(' + section_3_img_2 + ')', 'background-size': bg_size_3_2}">
+                        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')">
+                    </div>
+                </div>
+            </div><br>
+            <br>
+
+            <h4>Section 3</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_3_img_3 + ')', 'background-size': bg_size_3_3}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')">
+            </div><br><br>
+
+
+            <h4>Section 4</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_4_img + ')', 'background-size': bg_size_4}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
+            <br><br>
+            <button type="button" *ngIf="!isLoading else loader" class="btn btn-outline-dark" style="border-radius: 0%; padding: 10px 50px;" (click)="submitThings('template2')">Save</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #template3>
+    <div class="main-form">
+        <div class="logos">
+            <img src="../../../assets/svgs/main-logo.svg" alt="studio-logo">
+            <img src="../../../assets/svgs/logout.svg" alt="logout">
+        </div>
+        <br><br>
+
+        <div>
+            <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title"><br>
+            <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+                <option value="Jail">Jail</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Urban">Urban</option>
+                <option value="Mixed Use">Mixed Use</option>
+            </select>
+            <br><br>
+
+            <h4>Section 1</h4><br>
+            <div class="large-img" id="section-img-1"
+                [ngStyle]="{'background-image': 'url(' + section_1_img + ')', 'background-size': bg_size_1}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+            <br>
+
+            <h4>Section 2</h4><br>
+            <div class="part-images">
+                <div class="indiv-image"
+                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
+                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+                </div>
+                <div class="indiv-image"
+                    [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
+                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
+                </div>
+                <div class="indiv-image"
+                    [ngStyle]="{'background-image': 'url(' + section_3_img_2 + ')', 'background-size': bg_size_3_2}">
+                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')">
+                </div>
+            </div><br><br>
+
+            <h4>Section 2</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_3_img_3 + ')', 'background-size': bg_size_3_3}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')">
+            </div><br><br>
+
+
+            <h4>Section 4</h4><br>
+            <div class="large-img"
+                [ngStyle]="{'background-image': 'url(' + section_4_img + ')', 'background-size': bg_size_4}">
+                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')">
+            </div><br>
+            <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
+            <br><br>
+            <button type="button" *ngIf="!isLoading else loader" class="btn btn-outline-dark" style="border-radius: 0%; padding: 10px 50px;" (click)="submitThings('template3')">Save</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loader>
+	<div class="spinner-grow" role="status">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</ng-template>

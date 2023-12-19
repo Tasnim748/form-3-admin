@@ -1,0 +1,31 @@
+<div class="header-part">
+    <img src="../../../assets/svgs/main-logo.svg" alt="studio-logo" (click)="selectSection(undefined)">
+    <img src="../../../assets/svgs/logout.svg" alt="logout">
+</div>
+
+<div *ngIf="!sectionSelected">
+    <div class="section-holder">
+        <div class="individual-section" (click)="selectSection('team')">
+            <h3>team.</h3>
+        </div>
+        <div class="individual-section" (click)="selectSection('projects')">
+            <h3>projects.</h3>
+        </div>
+        <div class="individual-section" (click)="selectSection('stories')">
+            <h3>stories.</h3>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- sections -->
+
+<app-team *ngIf="sectionSelected === 'team'"></app-team>
+
+<app-project *ngIf="sectionSelected === 'projects'"></app-project>
+
+<app-story *ngIf="sectionSelected === 'stories'">Section Stories</app-story>
+
+<!-- end sections -->

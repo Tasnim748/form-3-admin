@@ -1,0 +1,122 @@
+.main-header {
+    text-align: center;
+}
+
+.btns {
+    margin: 2% 10%;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 49.5%;
+            padding: 2% 10%;
+        }
+    }
+}
+
+.list {
+    margin: 2% 10%;
+}
+
+.modal-body {
+    padding: 2% 10%;
+}
+
+
+
+.form-body {
+    padding: 0 2%;
+
+    .btn-groups {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+
+        button {
+            width: 33%;
+            height: 40px;
+            transition: 0.7s;
+        }
+
+        button:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+
+    .main-form {
+        border: 0.7px solid black;
+        padding: 2% 7%;
+
+        .logos {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        div {
+            .large-img {
+                width: 100%;
+                height: 500px;
+                background-color: rgb(245, 245, 245);
+                background-position: center;
+                background-repeat: no-repeat;
+
+                input {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+            }
+
+            .part-images {
+                height: 490px;
+                display: flex;
+                justify-content: space-between;
+
+                .indiv-image {
+                    background-color: rgb(245, 245, 245);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    width: 49%;
+                    height: 100%;
+
+                    input {
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+                }
+
+                .indiv-image:nth-child(2) {
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    div {
+                        height: 48%;
+                        background-color: rgb(245, 245, 245);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.preview {
+    outline: 0.7px solid black;
+    height: 70vh;
+}
+
+.template-selection {
+    background-color: black;
+    color: white;
+}

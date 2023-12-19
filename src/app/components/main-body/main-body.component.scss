@@ -1,0 +1,48 @@
+.header-part {
+    margin: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.section-holder {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 7% 30%;
+
+    .individual-section {
+        width: 82px;
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        position: relative;
+        background-size: cover;
+        cursor: pointer;
+
+        h3 {
+            rotate: 90deg;
+            position: absolute;
+            bottom: 90px;
+            color: white;
+        }
+    }
+
+    .individual-section:nth-child(1) {
+        background-image: url('../../../assets/images/team.png');
+    }
+
+    .individual-section:nth-child(2) {
+        background-image: url('../../../assets/images/works.png');
+    }
+
+    .individual-section:nth-child(3) {
+        background-image: url('../../../assets/images/stories.png');
+    }
+}

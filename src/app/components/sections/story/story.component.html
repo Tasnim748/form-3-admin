@@ -1,0 +1,92 @@
+<div class="main-part">
+    <h1>Stories</h1>
+    <br><br>
+    <div class="btns">
+        <button (click)="openModal(content)">Add New story</button>
+    </div>
+    <br><br>
+    <div>
+		<ng-container *ngFor="let story of stories">
+			<app-team-card 
+				[_id]="story._id"
+				[name]="story.title" 
+				[designation]="story.year" 
+				[photoLink]="story.image1" 
+				[which]="'stories'" 
+			/>
+			<br>
+		</ng-container>
+    </div>
+</div>
+
+<!-- modal -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Add New Story</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form class="story-form">
+			<div class="mb-3">
+				<label>Title</label><br><br>
+				<input type="text" class="form-control" [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+			</div>
+            <br>
+			<div class="mb-3">
+				<label>Text 1</label><br><br>
+				<editor [init]="editorConfig" [(ngModel)]="text1" [ngModelOptions]="{standalone: true}"></editor>
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Location</label><br><br>
+				<input type="text" class="form-control" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Year</label><br><br>
+				<input type="number" class="form-control" [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Image 1</label><br><br>
+				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 1)">
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Text 2</label><br><br>
+				<editor [init]="editorConfig" [(ngModel)]="text2" [ngModelOptions]="{standalone: true}"></editor>
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Text 3</label><br><br>
+				<editor [init]="editorConfig" [(ngModel)]="text3" [ngModelOptions]="{standalone: true}"></editor>
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Text 4</label><br><br>
+				<editor [init]="editorConfig" [(ngModel)]="text4" [ngModelOptions]="{standalone: true}"></editor>
+			</div>
+            <br>
+            <div class="mb-3">
+				<label>Image 2</label><br><br>
+				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 2)">
+			</div>
+            <br>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			(click)="onSubmitStory()"
+			*ngIf="!isLoading else loader"
+			[disabled]="!(title && text1 && text2 && text3 && text4 && text4 && image1 && image2)"
+		>Save</button>
+	</div>
+</ng-template>
+
+<ng-template #loader>
+	<div class="spinner-grow" role="status">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</ng-template>

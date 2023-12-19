@@ -1,0 +1,14 @@
+<div class="main-body">
+    <div class="sides">
+        <h3>{{ serial }}</h3>
+        <img [src]="photoLink" alt="">
+        <div>
+            <h2>{{ name }}</h2>
+            <p style="margin: 0;">{{ designation }}</p>
+        </div>
+    </div>
+    <div class="sides">
+        <img src="assets/svgs/edit.svg" alt="edit">
+        <img src="assets/svgs/delete.svg" alt="delete" (click)="deleteThis(_id, which)">
+    </div>
+</div>
