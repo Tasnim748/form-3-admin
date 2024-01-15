@@ -20,10 +20,7 @@ export class MainService {
   // only works
   works: Work[] = [];
 
-  getWorks(): Observable<Work[]> {
-    return this.http.get<Work[]>(`${backURL}projects`, httpOptions);
-  }
-
+  
   setWorks(works: Work[]): void {
     this.works = works;
   }
@@ -31,11 +28,11 @@ export class MainService {
   pushwork(work: Work): void {
     this.works.push(work);
   }
-
+  
   deleteWork(id: string): void {
     this.works = this.works.filter(item => item._id != id);
   }
-
+  
   updateWork(work: Work): void {
     this.works = this.works.map(single => {
       if (work._id == single._id) {
@@ -46,4 +43,33 @@ export class MainService {
     });
   }
   // end works
+  
+  // to server
+  getWorks(): Observable<Work[]> {
+    return this.http.get<Work[]>(`${backURL}projects`, httpOptions);
+  }
+
+  postWork(work: any) {
+    return this.http.post<any>(`${backURL}projects`, work);
+  }
+
+  deletePermanent(_id: string): Observable<any> {
+    return this.http.delete<any>(`${backURL}projects`, { body: { _id: _id } });
+  }
+
+  putWork(work: any): Observable<any> {
+    return this.http.put<any>(`${backURL}projects`, work);
+  }
+
+  setFeatured(_id: string): Observable<any> {
+    return this.http.put<any>(`${backURL}projects/setfeatured`, { _id: _id });
+  }
+
+  getAuth(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${backURL}authentication`, {
+      'user': username,
+      'pass': password
+    });
+  }
+
 }

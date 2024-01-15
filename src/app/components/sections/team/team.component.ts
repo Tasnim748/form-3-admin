@@ -28,7 +28,7 @@ export class TeamComponent implements OnInit {
   // Only for modal operations and submissions through modal
   private modalService = inject(NgbModal);
   closeResult = '';
-
+  
   openModal(content: TemplateRef<any>) {
     this.modalService
       .open(content, {

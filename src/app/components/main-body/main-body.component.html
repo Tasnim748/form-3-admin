@@ -1,31 +1,52 @@
 <div class="header-part">
     <img src="../../../assets/svgs/main-logo.svg" alt="studio-logo" (click)="selectSection(undefined)">
-    <img src="../../../assets/svgs/logout.svg" alt="logout">
+    <img src="../../../assets/svgs/logout.svg" alt="logout" (click)="logout()" *ngIf="isAuthenticated">
 </div>
 
-<div *ngIf="!sectionSelected">
-    <div class="section-holder">
-        <div class="individual-section" (click)="selectSection('team')">
-            <h3>team.</h3>
-        </div>
-        <div class="individual-section" (click)="selectSection('projects')">
-            <h3>projects.</h3>
-        </div>
-        <div class="individual-section" (click)="selectSection('stories')">
-            <h3>stories.</h3>
+<ng-container *ngIf="isAuthenticated else pleaseBeGenuine">
+    <div *ngIf="!sectionSelected">
+        <div class="section-holder">
+            <div class="individual-section" (click)="selectSection('team')">
+                <h3>team.</h3>
+            </div>
+            <div class="individual-section" (click)="selectSection('projects')">
+                <h3>projects.</h3>
+            </div>
+            <div class="individual-section" (click)="selectSection('stories')">
+                <h3>stories.</h3>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>
+
+<ng-template #pleaseBeGenuine>
+    <form class="auth-form" (submit)="onSubmit()">
+        <h1>Please input valid username and password</h1>
+        <br><br><br>
+        <input type="text" placeholder="Username" required [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+        <br><br>
+        <input type="password" placeholder="Password" required [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+        <br><br><br>
+        <button *ngIf="!onProcess; else loader" type="submit">Submit</button>
+    </form>
+</ng-template>
 
 
 
 
 <!-- sections -->
 
-<app-team *ngIf="sectionSelected === 'team'"></app-team>
+<app-team *ngIf="sectionSelected === 'team' && isAuthenticated"></app-team>
 
-<app-project *ngIf="sectionSelected === 'projects'"></app-project>
+<app-project *ngIf="sectionSelected === 'projects' && isAuthenticated"></app-project>
 
-<app-story *ngIf="sectionSelected === 'stories'">Section Stories</app-story>
+<app-story *ngIf="sectionSelected === 'stories' && isAuthenticated"></app-story>
 
 <!-- end sections -->
+
+
+<ng-template #loader>
+	<div class="spinner-grow" role="status">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</ng-template>

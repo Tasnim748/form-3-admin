@@ -55,4 +55,8 @@ export class TeamService {
   deletePermanent(_id: string): Observable<any> {
     return this.http.delete<any>(`${backURL}teams`, { body: { _id: _id } });
   }
+
+  putMember(data: any): Observable<any> {
+    return this.http.put<any>(`${backURL}teams`, data)
+  }
 }

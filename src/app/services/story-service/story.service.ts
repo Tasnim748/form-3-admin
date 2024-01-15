@@ -55,4 +55,8 @@ export class StoryService {
   deletePermanent(_id: string): Observable<any> {
     return this.http.delete<any>(`${backURL}stories`, { body: { _id: _id } });
   }
+
+  putStory(data: any): Observable<any> {
+    return this.http.put<any>(`${backURL}stories`, data);
+  }
 }

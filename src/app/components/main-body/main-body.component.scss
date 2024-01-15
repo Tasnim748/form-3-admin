@@ -46,3 +46,69 @@
         background-image: url('../../../assets/images/stories.png');
     }
 }
+
+.auth-form {
+    padding: 10% 20%;
+    text-align: center;
+
+    input {
+        width: 100%;
+        padding: 2%;
+        font-size: 20px;
+        border-radius: 10px;
+        border: 0.3px solid;
+    }
+
+    button {
+        padding: 1.4% 6%;
+        font-size: 24px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        color: black;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+    }
+}
+
+.loader-box {
+    text-align: -webkit-center; 
+}
+
+.loader {
+    border: 16px solid #000000;
+    border-radius: 50%;
+    border-top: 16px solid rgb(255, 203, 31);
+    width: 15px;
+    height: 15px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+    text-align: center;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

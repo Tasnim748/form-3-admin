@@ -8,7 +8,69 @@
         </div>
     </div>
     <div class="sides">
-        <img src="assets/svgs/edit.svg" alt="edit">
-        <img src="assets/svgs/delete.svg" alt="delete" (click)="deleteThis(_id, which)">
+        <img src="assets/svgs/edit.svg" alt="edit" (click)="openTeamEditModal(content)">
+        <img src="assets/svgs/delete.svg" alt="delete" (click)="openDelete(deleteTeam, _id)">
     </div>
 </div>
+
+
+<!-- modal template for team add -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Edit Member</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form class="member-form">
+			<div class="mb-3">
+				<label for="member-name">Name</label>
+				<input type="text" class="form-control" id="member-name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+			</div>
+            <br>
+            <div class="mb-3">
+				<label for="designation">Designation</label>
+				<input type="text" class="form-control" id="designation" [(ngModel)]="designation" [ngModelOptions]="{standalone: true}">
+			</div>
+            <br>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			style="border-radius: 0%;" 
+			(click)="onSubmitTeam()" 
+			*ngIf="!isLoading else loader"
+		>Save</button>
+	</div>
+</ng-template>
+
+<ng-template #loader>
+	<div class="spinner-grow" role="status">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</ng-template>
+
+
+<ng-template #deleteTeam let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete Member</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		Do you sure want to delete?
+	</div>
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			style="border-radius: 0%;" 
+			(click)="deleteThis(deletingId, which)" 
+		>Yes</button>
+		<button 
+			class="btn btn-outline-dark" 
+			style="border-radius: 0%;" 
+			(click)="modal.dismiss('Cross click')"
+		>No</button>
+	</div>
+</ng-template>

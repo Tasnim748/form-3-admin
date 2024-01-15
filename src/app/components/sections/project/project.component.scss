@@ -10,8 +10,9 @@
         justify-content: space-between;
 
         button {
-            width: 49.5%;
-            padding: 2% 10%;
+            width: 20%;
+            padding: 1%;
+            background: white;
         }
     }
 }
@@ -81,7 +82,6 @@
                     background-color: rgb(245, 245, 245);
                     background-position: center;
                     background-repeat: no-repeat;
-                    width: 49%;
                     height: 100%;
 
                     input {
@@ -93,17 +93,38 @@
                     }
                 }
 
+                .indiv-image:nth-child(1) {
+                    width: 60%;
+                }
+
                 .indiv-image:nth-child(2) {
+                    width: 38%;
                     background-color: white;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-
+    
                     div {
                         height: 48%;
                         background-color: rgb(245, 245, 245);
                         background-position: center;
                         background-repeat: no-repeat;
+                    }
+                }
+
+                .triple-image {
+                    background-color: rgb(245, 245, 245);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    height: 100%;
+                    width: 32%;
+
+                    input {
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        opacity: 0;
+                        cursor: pointer;
                     }
                 }
             }
@@ -119,4 +140,47 @@
 .template-selection {
     background-color: black;
     color: white;
+}
+
+.main-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95px;
+    width: 100%;
+    border: 2px solid rgb(174, 174, 174);
+    padding: 0 3%;
+
+    .sides {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        h3 {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .sides:nth-child(1) {
+        img {
+            width: 63px;
+            height: 63px;
+            border-radius: 50%;
+        }
+    }
+
+    .sides:nth-child(2) {
+        img {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
 }

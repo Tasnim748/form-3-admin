@@ -2,27 +2,34 @@
     <h1>Stories</h1>
     <br><br>
     <div class="btns">
-        <button (click)="openModal(content)">Add New story</button>
+        <button (click)="openModal(storyModal)">Add New story</button>
     </div>
     <br><br>
     <div>
-		<ng-container *ngFor="let story of stories">
-			<app-team-card 
-				[_id]="story._id"
-				[name]="story.title" 
-				[designation]="story.year" 
-				[photoLink]="story.image1" 
-				[which]="'stories'" 
-			/>
+		<ng-container *ngFor="let story of stories; index as i">
+			<div class="main-body">
+				<div class="sides">
+					<h3>{{ i+1 }}</h3>
+					<img [src]="story.image1" alt="">
+					<div>
+						<h2>{{ story.title }}</h2>
+						<p style="margin: 0;">{{ story.location }}</p>
+					</div>
+				</div>
+				<div class="sides">
+					<img src="assets/svgs/edit.svg" alt="edit" (click)="openModalUpdate(storyModal, story.title, story.location, story.year, story.text1, story.text2, story.text3, story.text4, story._id)">
+					<img src="assets/svgs/delete.svg" alt="delete" (click)="openDelete(deleteStory, story._id)">
+				</div>
+			</div>
 			<br>
 		</ng-container>
     </div>
 </div>
 
 <!-- modal -->
-<ng-template #content let-modal>
+<ng-template #storyModal let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Add New Story</h4>
+		<h4 class="modal-title" id="modal-basic-title">{{ updating ? 'Edit Story' : 'Add New Story' }}</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -47,7 +54,7 @@
 				<input type="number" class="form-control" [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
 			</div>
             <br>
-            <div class="mb-3">
+            <div class="mb-3" *ngIf="!updating">
 				<label>Image 1</label><br><br>
 				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 1)">
 			</div>
@@ -67,7 +74,7 @@
 				<editor [init]="editorConfig" [(ngModel)]="text4" [ngModelOptions]="{standalone: true}"></editor>
 			</div>
             <br>
-            <div class="mb-3">
+            <div class="mb-3" *ngIf="!updating">
 				<label>Image 2</label><br><br>
 				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 2)">
 			</div>
@@ -80,7 +87,6 @@
 			class="btn btn-outline-dark" 
 			(click)="onSubmitStory()"
 			*ngIf="!isLoading else loader"
-			[disabled]="!(title && text1 && text2 && text3 && text4 && text4 && image1 && image2)"
 		>Save</button>
 	</div>
 </ng-template>
@@ -88,5 +94,28 @@
 <ng-template #loader>
 	<div class="spinner-grow" role="status">
 		<span class="visually-hidden">Loading...</span>
+	</div>
+</ng-template>
+
+<ng-template #deleteStory let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete Story</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		Do you sure want to delete?
+	</div>
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			style="border-radius: 0%;" 
+			(click)="deleteThis(deletingId)" 
+		>Yes</button>
+		<button 
+			class="btn btn-outline-dark" 
+			style="border-radius: 0%;" 
+			(click)="modal.dismiss('Cross click')"
+		>No</button>
 	</div>
 </ng-template>

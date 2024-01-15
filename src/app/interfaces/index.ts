@@ -17,6 +17,7 @@ export interface Work {
     photoLink4: string,
     description4: string,
     photoLink5: string,
+    featured: boolean,
     __v: number
 }
 
@@ -41,3 +42,5 @@ export interface Story {
     image2: string,
     __v: string
 }
+
+export const placeHolderThumb = "../../../../assets/images/img-placeholder.png";
