@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, inject, TemplateRef, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -88,4 +89,9 @@ export class TeamComponent implements OnInit {
   }
 
   isLoading: boolean = false;
+
+
+  onDrop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.team, event.previousIndex, event.currentIndex);
+  }
 }

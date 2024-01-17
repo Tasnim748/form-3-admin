@@ -1,28 +1,44 @@
 <div class="main-part">
-    <h1>Team</h1>
-    <br><br>
-    <div class="btns">
-        <button (click)="openModal(content)">Add New Member</button>
-    </div>
-    <br><br>
-    <div>
-		<ng-container *ngFor="let mem of team; index as i">
-			<app-team-card 
-				[name]="mem.name" 
-				[designation]="mem.designation" 
-				[serial]="i+1" 
-				[photoLink]="mem.picLink"
-				[_id]="mem._id"
-				[which]="'teams'"
-			/>
-			<br>
-		</ng-container>
-    </div>
+	<h1>Team</h1>
+	<br><br>
+	<div class="btns">
+		<button (click)="openModal(content)">Add New Member</button>
+	</div>
+	<br><br>
+	<div>
+		<!-- ng container -->
+
+		<div cdkDropList (cdkDropListDropped)="onDrop($event)">
+			<div *ngFor="let mem of team; index as i" cdkDrag>
+				<app-team-card 
+					[name]="mem.name" 
+					[designation]="mem.designation" 
+					[serial]="i + 1"
+					[photoLink]="mem.picLink"
+					[_id]="mem._id" 
+					[which]="'teams'"
+				></app-team-card>
+				<br>
+			</div>
+		</div>
+
+
+		<!-- <app-team-card 
+				  [name]="mem.name" 
+				  [designation]="mem.designation" 
+				  [serial]="i+1" 
+				  [photoLink]="mem.picLink"
+				  [_id]="mem._id"
+				  [which]="'teams'"
+			  /> -->
+		<br>
+
+	</div>
 </div>
 
 
 
-<!-- modal template for team add -->
+<!-- modal -->
 <ng-template #content let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Add New Member</h4>
@@ -32,29 +48,28 @@
 		<form class="member-form">
 			<div class="mb-3">
 				<label for="member-name">Name</label>
-				<input type="text" class="form-control" id="member-name" [(ngModel)]="memberName" [ngModelOptions]="{standalone: true}">
+				<input type="text" class="form-control" id="member-name" [(ngModel)]="memberName"
+					[ngModelOptions]="{standalone: true}">
 			</div>
-            <br>
-            <div class="mb-3">
+			<br>
+			<div class="mb-3">
 				<label for="designation">Designation</label>
-				<input type="text" class="form-control" id="designation" [(ngModel)]="designation" [ngModelOptions]="{standalone: true}">
+				<input type="text" class="form-control" id="designation" [(ngModel)]="designation"
+					[ngModelOptions]="{standalone: true}">
 			</div>
-            <br>
-            <div class="mb-3">
+			<br>
+			<div class="mb-3">
 				<label for="member-photo">Photo</label>
-				<input type="file" accept="image/*" class="form-control" id="member-photo" (change)="imageFieldChange($event)">
+				<input type="file" accept="image/*" class="form-control" id="member-photo"
+					(change)="imageFieldChange($event)">
 			</div>
+			<br>
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button 
-			type="button" 
-			class="btn btn-outline-dark" 
-			style="border-radius: 0%;" 
-			[disabled]="!(memberName && designation && memberPhoto)" 
-			(click)="onSubmitTeam()" 
-			*ngIf="!isLoading else loader"
-		>Save</button>
+		<button type="button" class="btn btn-outline-dark" style="border-radius: 0%;"
+			[disabled]="!(memberName && designation && memberPhoto)" (click)="onSubmitTeam()"
+			*ngIf="!isLoading else loader">Save</button>
 	</div>
 </ng-template>
 
