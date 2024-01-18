@@ -7,8 +7,8 @@
 	<br><br>
 	<div>
 		<!-- ng container -->
-
-		<div cdkDropList (cdkDropListDropped)="onDrop($event)">
+         
+		<!-- <div cdkDropList (cdkDropListDropped)="onDrop($event)">
 			<div *ngFor="let mem of team; index as i" cdkDrag>
 				<app-team-card 
 					[name]="mem.name" 
@@ -20,19 +20,26 @@
 				></app-team-card>
 				<br>
 			</div>
-		</div>
+		</div> -->
 
+		<ng-container>
 
-		<!-- <app-team-card 
-				  [name]="mem.name" 
-				  [designation]="mem.designation" 
-				  [serial]="i+1" 
-				  [photoLink]="mem.picLink"
-				  [_id]="mem._id"
-				  [which]="'teams'"
-			  /> -->
-		<br>
+			
+			<div *ngFor="let mem of team; index as i" cdkDrag>
+				<app-team-card 
+					[name]="mem.name" 
+					[designation]="mem.designation" 
+					[serial]="i + 1"
+					[photoLink]="mem.picLink"
+					[_id]="mem._id" 
+					[which]="'teams'"
+				></app-team-card>
+				<br>
+			</div>
 
+		
+		</ng-container>
+		
 	</div>
 </div>
 
@@ -58,6 +65,12 @@
 					[ngModelOptions]="{standalone: true}">
 			</div>
 			<br>
+			
+
+			<div class="mb-3">
+				<label for="priority">Priority</label>
+				<input type="number" class="form-control" id="priority" [(ngModel)]="priority" [ngModelOptions]="{standalone: true}">
+			</div>
 			<div class="mb-3">
 				<label for="member-photo">Photo</label>
 				<input type="file" accept="image/*" class="form-control" id="member-photo"

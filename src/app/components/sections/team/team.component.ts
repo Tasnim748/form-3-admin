@@ -14,6 +14,7 @@ export class TeamComponent implements OnInit {
   memberName!: string;
   designation!: string;
   memberPhoto: File|null = null;
+  priority!: string;
 
   get team() {
     return this.teamService.team;
@@ -41,7 +42,7 @@ export class TeamComponent implements OnInit {
         (result) => {
           this.closeResult = `Closed with: ${result}`;
           console.log(this.closeResult);
-          console.log(this.memberName, this.designation, this.memberPhoto);
+          console.log(this.memberName, this.designation, this.memberPhoto, this.priority);
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -68,19 +69,21 @@ export class TeamComponent implements OnInit {
 
   // submission
   onSubmitTeam() {
-    if (this.memberName && this.designation && this.memberPhoto) {
+    if (this.memberName && this.designation && this.memberPhoto && this.priority) {
       this.isLoading = true;
       
       let newTeamInst = new FormData();
       newTeamInst.append('name', this.memberName);
       newTeamInst.append('designation', this.designation);
       newTeamInst.append('img', this.memberPhoto);
+      newTeamInst.append('priority', this.priority);
   
       this.teamService.addNew(newTeamInst).subscribe((see) => {
         this.teamService.pushMember(see.data);
         this.memberName = '';
         this.designation = '';
         this.memberPhoto = null;
+        this.priority = '';
 
         this.isLoading = false;
         this.modalService.dismissAll('submitted');
