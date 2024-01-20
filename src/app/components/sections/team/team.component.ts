@@ -31,6 +31,7 @@ export class TeamComponent implements OnInit {
   private modalService = inject(NgbModal);
   closeResult = '';
   
+
   openModal(content: TemplateRef<any>) {
     this.modalService
       .open(content, {
@@ -94,7 +95,7 @@ export class TeamComponent implements OnInit {
   isLoading: boolean = false;
 
 
-  onDrop(event: CdkDragDrop<any[]>) {
-    moveItemInArray(this.team, event.previousIndex, event.currentIndex);
-  }
+  // onDrop(event: CdkDragDrop<any[]>) {
+  //   moveItemInArray(this.team, event.previousIndex, event.currentIndex);
+  // }
 }
