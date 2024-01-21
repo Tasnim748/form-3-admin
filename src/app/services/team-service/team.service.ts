@@ -19,6 +19,7 @@ export class TeamService {
 
   // only team
   team: Team[] = [];
+  refreshFlag:boolean=false;
 
   
   setTeam(team: Team[]): void {

@@ -18,7 +18,7 @@ export class TeamComponent implements OnInit {
 
 
 
-  private refreshFlag: boolean = false;
+ // private refreshFlag: boolean = false;
 
 
   get team() {
@@ -95,7 +95,7 @@ export class TeamComponent implements OnInit {
         this.modalService.dismissAll('submitted');
 
 
-        this.refreshFlag = true;
+        this.teamService.refreshFlag = true;
 
         
       });
@@ -106,11 +106,11 @@ export class TeamComponent implements OnInit {
 
 
   ngDoCheck() {
-    if (this.refreshFlag) {
+    if (this.teamService.refreshFlag) {
       // Reload the component by re-fetching the team data
       this.teamService.getTeam().subscribe((got) => {
         this.teamService.setTeam(got);
-        this.refreshFlag = false; // Reset the refresh flag
+        this.teamService.refreshFlag = false; // Reset the refresh flag
       });
     }
   }

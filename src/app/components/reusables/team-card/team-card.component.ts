@@ -20,10 +20,14 @@ export class TeamCardComponent {
   @Input() name: string = "No title";
   @Input() designation: string = 'No designation';
   @Input() photoLink: string = "no image";
+  @Input() memberPhoto: File|null = null;
+  @Input() priority: string = "0";
   @Input() _id: string = 'no ID'
   @Input() which: string = '';
 
   isLoading: boolean = false;
+
+  //private refreshFlag: boolean = false;
 
   constructor(
     private http: HttpClient, 
@@ -64,7 +68,7 @@ export class TeamCardComponent {
       (result: any) => {
         this.closeResult = `Closed with: ${result}`;
         console.log(this.closeResult);
-        console.log(this.name, this.designation);
+        console.log(this.name, this.designation, this.memberPhoto);
       },
       (reason: any) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -88,7 +92,7 @@ export class TeamCardComponent {
       (result: any) => {
         this.closeResult = `Closed with: ${result}`;
         console.log(this.closeResult);
-        console.log(this.name, this.designation);
+        console.log(this.name, this.designation ,this.memberPhoto);
       },
       (reason: any) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -110,25 +114,55 @@ export class TeamCardComponent {
   }
   // end modal operation sector
 
-
+  imageFieldChange(event: any) {
+    this.memberPhoto = event.target.files[0];
+    console.log(this.memberPhoto);
+  }
   // submission
   onSubmitTeam() {
-    if (this.name && this.designation) {
+    if (this.name && this.designation || this.memberPhoto) {
       this.isLoading = true;
+
+      let newTeamInst = new FormData();
+      newTeamInst.append('_id', this._id);
+      newTeamInst.append('name', this.name);
+      newTeamInst.append('designation', this.designation);
+      newTeamInst.append('priority', this.priority);
+      if(this.memberPhoto){
+        newTeamInst.append('img', this.memberPhoto);
+      }
+      
   
-      this.teamService.putMember({
-        '_id': this._id,
-        'name': this.name,
-        'designation': this.designation
-      }).subscribe((see) => {
+      // this.teamService.putMember({
+      //   '_id': this._id,
+      //   'name': this.name,
+      //   'designation': this.designation,
+      //   'img' : this.memberPhoto
+      // }).subscribe((see) => {
+        this.teamService.putMember(newTeamInst).subscribe((see) => {
         this.teamService.updateMember(see.data);
         this.name = '';
         this.designation = '';
+        this.memberPhoto = null;
 
         this.isLoading = false;
+
+        this.teamService.refreshFlag = true;
+
+
         this.modalService.dismissAll('submitted');
       });
     }
   }
+
+  // ngDoCheck() {
+  //   if (this.refreshFlag) {
+  //     // Reload the component by re-fetching the team data
+  //     this.teamService.getTeam().subscribe((got) => {
+  //       this.teamService.setTeam(got);
+  //       this.refreshFlag = false; // Reset the refresh flag
+  //     });
+  //   }
+  // }
 
 }

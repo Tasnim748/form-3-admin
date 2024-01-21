@@ -32,6 +32,19 @@
 				<input type="text" class="form-control" id="designation" [(ngModel)]="designation" [ngModelOptions]="{standalone: true}">
 			</div>
             <br>
+
+		<div class="mb-3">
+			<label for="priority">Priority</label>
+			<input type="number" class="form-control" id="priority" [(ngModel)]="priority" [ngModelOptions]="{standalone: true}">
+		</div>
+	<br>
+
+		<div class="mb-3">
+			<label for="member-photo">Photo</label>
+			<input type="file" accept="image/*" class="form-control" id="memberPhoto"
+				(change)="imageFieldChange($event)">
+		</div>
+
 		</form>
 	</div>
 	<div class="modal-footer">
