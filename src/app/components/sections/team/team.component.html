@@ -81,7 +81,7 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline-dark" style="border-radius: 0%;"
-			[disabled]="!(memberName && designation && memberPhoto)" (click)="onSubmitTeam()"
+			[disabled]="!(memberName && designation && memberPhoto)" (click)="onSubmitTeam(); " 
 			*ngIf="!isLoading else loader">Save</button>
 	</div>
 </ng-template>

@@ -16,6 +16,11 @@ export class TeamComponent implements OnInit {
   memberPhoto: File|null = null;
   priority!: string;
 
+
+
+  private refreshFlag: boolean = false;
+
+
   get team() {
     return this.teamService.team;
   }
@@ -88,11 +93,28 @@ export class TeamComponent implements OnInit {
 
         this.isLoading = false;
         this.modalService.dismissAll('submitted');
+
+
+        this.refreshFlag = true;
+
+        
       });
     }
   }
 
   isLoading: boolean = false;
+
+
+  ngDoCheck() {
+    if (this.refreshFlag) {
+      // Reload the component by re-fetching the team data
+      this.teamService.getTeam().subscribe((got) => {
+        this.teamService.setTeam(got);
+        this.refreshFlag = false; // Reset the refresh flag
+      });
+    }
+  }
+
 
 
   // onDrop(event: CdkDragDrop<any[]>) {
