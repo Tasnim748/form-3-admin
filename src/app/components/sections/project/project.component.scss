@@ -130,6 +130,8 @@
             }
         }
     }
+
+    
 }
 
 .preview {
@@ -182,5 +184,24 @@
             height: 24px;
             cursor: pointer;
         }
+    }
+}
+
+
+.penta-image {
+    background-color: rgb(245, 245, 245);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50%;
+    width: 32%;
+    justify-content: space-around;
+    border: 1px solid rgb(131, 130, 130);
+
+    input {
+        display: block;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
     }
 }
