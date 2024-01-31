@@ -40,6 +40,7 @@
                 <button (click)="selectTemplate(1)" [ngClass]="{'template-selection': whichTemplate == 1}">Template 1</button>
                 <button (click)="selectTemplate(2)" [ngClass]="{'template-selection': whichTemplate == 2}">Template 2</button>
                 <button (click)="selectTemplate(3)" [ngClass]="{'template-selection': whichTemplate == 3}">Template 3</button>
+                <button (click)="selectTemplate(4)" [ngClass]="{'template-selection': whichTemplate == 4}">Template 4</button>
             </div>
             <br>
             <ng-container [ngSwitch]="whichTemplate">
@@ -62,6 +63,7 @@
                 <img *ngSwitchCase="1" src="https://server.form3a.net/images/Template_1.jpg" width="100%" height="100%" alt="">
                 <img *ngSwitchCase="2" src="https://server.form3a.net/images/Template_2.jpg" width="100%" height="100%" alt="">
                 <img *ngSwitchCase="3" src="https://server.form3a.net/images/Template_3.jpg" width="100%" height="100%" alt="">
+                <img *ngSwitchCase="4" src="../../../../assets/svgs/temp4 img.svg" width="100%" height="100%" alt="">
             </ng-container>
         </div>
     </div>
