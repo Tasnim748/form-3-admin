@@ -13,6 +13,10 @@ import _default from '@popperjs/core/lib/modifiers/popperOffsets';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  
+
+  selectedImage: string | null = null;
+  imageList: string[] = [];
 
   get works(): Work[] {
     return this.mainService.works;
@@ -435,5 +439,46 @@ export class ProjectComponent implements OnInit {
       console.log(resp);
       this.modalService.dismissAll('featured set');
     });
+  }
+
+
+  onImageSelected(event: any): void {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      this.imageList.push(imageUrl);
+
+      this.selectedImage = URL.createObjectURL(file);
+    }
+  }
+
+  deleteImage(index: number): void {
+    this.imageList.splice(index, 1);
+
+  }
+
+  displayPreview(index: number): void {
+    this.selectedImage = this.imageList[index];
+    this.renderSelectedImage();
+    console.log('hi')
+  }
+
+
+  renderSelectedImage(): void {
+    const selectedImageContainer = document.getElementById('selectedImageContainer');
+
+    if (selectedImageContainer) {
+      selectedImageContainer.innerHTML = '';
+
+      if (this.selectedImage) {
+        const imgElement = document.createElement('img');
+        imgElement.src = this.selectedImage;
+        imgElement.alt = 'Selected Image';
+        imgElement.classList.add('selected-image');
+
+        selectedImageContainer.appendChild(imgElement);
+      }
+    }
   }
 }

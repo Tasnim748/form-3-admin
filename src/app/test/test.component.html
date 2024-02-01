@@ -1,0 +1,22 @@
+<!-- app.component.html -->
+<div class="section-5">
+<label for="imageInput" class="choose-image-button">
+  hi there
+  <input type="file" id="imageInput" accept="image/*" (change)="onImageSelected($event)">
+</label>
+    
+<div class="container">
+  <!-- Container to show selected image -->
+  <div id="selectedImageContainer" class="selected-image-container">
+    <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="selected-image">
+  </div>
+
+  <!-- Image list container -->
+  <div id="imageList" class="image-list">
+    <ng-container *ngFor="let image of imageList; let i = index" class="image-ite">
+      <img [src]="image" alt="Image" class="image-preview" (click)="displayPreview(i)">
+      <button  class="delete-button" (click)="deleteImage(i)"></button>
+    </ng-container>
+  </div>
+</div>
+</div>    

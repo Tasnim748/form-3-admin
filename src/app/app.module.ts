@@ -18,6 +18,7 @@ import { TeamComponent } from './components/sections/team/team.component';
 import { ProjectComponent } from './components/sections/project/project.component';
 import { TeamCardComponent } from './components/reusables/team-card/team-card.component';
 import { StoryComponent } from './components/sections/story/story.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { StoryComponent } from './components/sections/story/story.component';
     ProjectComponent,
     TeamCardComponent,
     StoryComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
