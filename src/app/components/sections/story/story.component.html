@@ -17,7 +17,7 @@
 					</div>
 				</div>
 				<div class="sides">
-					<img src="assets/svgs/edit.svg" alt="edit" (click)="openModalUpdate(storyModal, story.title, story.location, story.year, story.text1, story.text2, story.text3, story.text4, story._id)">
+					<img src="assets/svgs/edit.svg" alt="edit" (click)="openModalUpdate(storyModal, story.title, story.location, story.year, story.text1, story.text2, story.text3, story.text4,story.links, story._id)">
 					<img src="assets/svgs/delete.svg" alt="delete" (click)="openDelete(deleteStory, story._id)">
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 				<input type="number" class="form-control" [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
 			</div>
             <br>
-            <div class="mb-3" *ngIf="!updating">
+            <div class="mb-3">
 				<label>Image 1</label><br><br>
 				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 1)">
 			</div>
@@ -74,11 +74,24 @@
 				<editor [init]="editorConfig" [(ngModel)]="text4" [ngModelOptions]="{standalone: true}"></editor>
 			</div>
             <br>
-            <div class="mb-3" *ngIf="!updating">
+            <div class="mb-3">
 				<label>Image 2</label><br><br>
 				<input type="file" accept="image/*" class="form-control" (change)="onImageFieldChange($event, 2)">
 			</div>
             <br>
+
+			<div class="mb-3">
+				<label>Links</label> <br><br> 
+				<button class='btn btn-secondary' (click)="AddLinks()">Add</button>
+				<div class="other-project-links" *ngFor="let item of links; let i=index">
+					0{{i+1}}
+					<input type="text" class="form-control" value="{{item.title}}" placeholder="Name of the story" (keydown)="updateLink($event,'title',i)">
+					<input type="text" class="form-control" value="{{item.href}}" placeholder="Link of the story" (keydown)="updateLink($event,'href',i)">
+					<button class='btn btn-danger  ms-2 link-x-button' (click)="removeLinks(i)"> X </button>
+				</div>
+				
+			</div>
+            <br>	
 		</form>
 	</div>
 	<div class="modal-footer">

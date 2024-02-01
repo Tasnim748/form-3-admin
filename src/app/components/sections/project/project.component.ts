@@ -34,22 +34,22 @@ export class ProjectComponent implements OnInit {
   };
 
   // all ng models
-  title!: string;
-  category!: string;
+  title: string;
+  category: string;
 
   description_1: string = '';
-  img_1!: File | null;
+  img_1: File | null;
 
   description_2: string = '';
-  img_2!: File | null;
+  img_2: File | null;
 
   description_3: string = '';
-  img_3_1!: File | null;
-  img_3_2!: File | null;
-  img_3_3!: File | null;
+  img_3_1: File | null;
+  img_3_2: File | null;
+  img_3_3: File | null;
 
   description_4: string = '';
-  img_4!: File | null;
+  img_4: File | null;
 
   img_7: File | null;
   img_8: File | null;
@@ -59,17 +59,8 @@ export class ProjectComponent implements OnInit {
   img_12: File | null;
   img_13: File | null;
 
-  car0_1: File | null;
-  car0_2: File | null;
-  car0_3: File | null;
-  car0_4: File | null;
-  car0_5: File | null;
-
-  car1_1: File | null;
-  car1_2: File | null;
-  car1_3: File | null;
-  car1_4: File | null;
-  car1_5: File | null;
+  car0: File[] = [];
+  car1: File[]= [];
 
   // template selection
   whichTemplate!: number;
@@ -123,6 +114,16 @@ export class ProjectComponent implements OnInit {
           this.img_3_3 = null;
           this.img_4 = null;
 
+          this.img_7 = null;
+          this.img_8 = null;
+          this.img_9 = null;
+          this.img_10 = null;
+          this.img_11 = null;
+          this.img_12 = null;
+          this.img_13 = null;
+
+
+
           this.updating = false;
         },
         (reason) => {
@@ -157,6 +158,13 @@ export class ProjectComponent implements OnInit {
           this.img_3_3 = null;
           this.img_4 = null;
 
+          this.img_7 = null;
+          this.img_8 = null;
+          this.img_9 = null;
+          this.img_10 = null;
+          this.img_11 = null;
+          this.img_12 = null;
+          this.img_13 = null;
           this.updating = false;
         }
       );
@@ -255,6 +263,14 @@ export class ProjectComponent implements OnInit {
   section_3_img_1: string = placeHolderThumb;
   section_3_img_2: string = placeHolderThumb;
   section_3_img_3: string = placeHolderThumb;
+  
+  preview_img_7: string = placeHolderThumb;
+  preview_img_8: string = placeHolderThumb;
+  preview_img_9: string = placeHolderThumb;
+  preview_img_10: string = placeHolderThumb;
+  preview_img_11: string = placeHolderThumb;
+  preview_img_12: string = placeHolderThumb;
+  preview_img_13: string = placeHolderThumb;
 
   bg_size_1: string = 'inherit';
   bg_size_2: string = 'inherit';
@@ -262,6 +278,15 @@ export class ProjectComponent implements OnInit {
   bg_size_3_1: string = 'inherit';
   bg_size_3_2: string = 'inherit';
   bg_size_3_3: string = 'inherit';
+
+  bg_size_7: string = 'inherit';
+  bg_size_8: string = 'inherit';
+  bg_size_9: string = 'inherit';
+  bg_size_10: string = 'inherit';
+  bg_size_11: string = 'inherit';
+  bg_size_12: string = 'inherit';
+  bg_size_13: string = 'inherit';
+
 
   getImagePreview(event: any, which: string) {
     switch (which) {
@@ -337,6 +362,79 @@ export class ProjectComponent implements OnInit {
           this.bg_size_3_3 = 'inherit';
         }
         break;
+      case 'preview_7':
+        this.img_7 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_7 = imgUrl;
+          this.bg_size_7 = 'cover';
+        } catch (e) {
+          this.preview_img_7 = placeHolderThumb;
+          this.bg_size_7 = 'inherit';
+        }
+        break;
+        case 'preview_8':
+        this.img_8 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_8 = imgUrl;
+          this.bg_size_8 = 'cover';
+        } catch (e) {
+          this.preview_img_8 = placeHolderThumb;
+          this.bg_size_8 = 'inherit';
+        }
+        break;
+        case 'preview_9':
+        this.img_9 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_9 = imgUrl;
+          this.bg_size_9 = 'cover';
+        } catch (e) {
+          this.preview_img_9 = placeHolderThumb;
+          this.bg_size_9 = 'inherit';
+        }
+        break;
+        case 'preview_10':
+        this.img_10 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_10 = imgUrl;
+          this.bg_size_10 = 'cover';
+        } catch (e) {
+          this.preview_img_10 = placeHolderThumb;
+          this.bg_size_10 = 'inherit';
+        }
+        break;
+        case 'preview_11':
+        this.img_11 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_11 = imgUrl;
+          this.bg_size_11 = 'cover';
+        } catch (e) {
+          this.preview_img_11 = placeHolderThumb;
+          this.bg_size_11 = 'inherit';
+        }
+        break;
+        case 'preview_12':
+        this.img_12 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_12 = imgUrl;
+          this.bg_size_12 = 'cover';
+        } catch (e) {
+          this.preview_img_12 = placeHolderThumb;
+          this.bg_size_12 = 'inherit';
+        }
+        break;
+
     }
   }
   // end image preview
@@ -388,45 +486,15 @@ export class ProjectComponent implements OnInit {
         formData.append('imgs', this.img_13);
       }
 
-      if (this.car0_1) {
-        formData.append('imgs', this.car0_1);
+      for(let i = 0;i<this.car0.length;i++){
+        formData.append('car0',this.car0[1])
       }
 
-      if (this.car0_2) {
-        formData.append('car0', this.car0_2);
+      for(let i = 0;i<this.car1.length;i++){
+        formData.append('car1',this.car1[1])
       }
 
-      if (this.car0_3) {
-        formData.append('car0', this.car0_3);
-      }
-
-      if (this.car0_4) {
-        formData.append('car0', this.car0_4);
-      }
-
-      if (this.car0_5) {
-        formData.append('car0', this.car0_5);
-      }
-
-      if (this.car1_1) {
-        formData.append('car1', this.car1_1);
-      }
-
-      if (this.car1_2) {
-        formData.append('car1', this.car1_2);
-      }
-
-      if (this.car1_3) {
-        formData.append('car1', this.car1_3);
-      }
-
-      if (this.car1_4) {
-        formData.append('car1', this.car1_4);
-      }
-
-      if (this.car1_5) {
-        formData.append('car1', this.car1_5);
-      }
+      
 
       formData.append('title', this.title);
       formData.append('category', this.category);
@@ -507,7 +575,23 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  featuredID: string = '-1';
+  featuredID: string = this.loadDefaultFeatured()
+
+  loadDefaultFeatured(){
+    let featuredWorks = this.works.filter((element)=>{
+      if(element.featured){
+        return true;
+      }
+      return false;
+    })
+    if(featuredWorks.length != 0){
+      console.log(this.works)
+      console.log(featuredWorks)
+      return featuredWorks[0]._id;
+    }
+
+    return '-1';
+  }
 
   setFeatured() {
     console.log(this.featuredID);

@@ -75,3 +75,17 @@
         }
     }
 }
+
+.other-project-links{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    input{
+        width: 40%;
+        margin-left: 15px ;
+    }
+
+}
