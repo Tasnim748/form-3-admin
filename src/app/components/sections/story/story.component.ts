@@ -27,6 +27,11 @@ export class StoryComponent implements OnInit {
   image1: File | undefined;
   image2: File | undefined;
 
+  links: {
+    title:string,
+    href:string, 
+  }[] = []
+
   constructor(private storyService: StoryService) {}
 
   ngOnInit(): void {
@@ -34,6 +39,14 @@ export class StoryComponent implements OnInit {
       this.storyService.setStory(response);
       console.log(this.stories);
     });
+  }
+
+  removeLinks(index:number){
+    this.links.splice(index,1);
+  }
+
+  AddLinks(){
+    this.links.push({title:"", href:""})
   }
 
   // editor configs
@@ -101,6 +114,7 @@ export class StoryComponent implements OnInit {
     text2: any,
     text3: any,
     text4: any,
+    links:any[],
     _id: any
   ) {
     this.updating = true;
@@ -112,6 +126,7 @@ export class StoryComponent implements OnInit {
     this.text3 = text3;
     this.text4 = text4;
     this.updatingID = _id;
+    this.links = links
     
     this.openModal(content);
   }
@@ -141,6 +156,7 @@ export class StoryComponent implements OnInit {
           this.text2 = '';
           this.text3 = '';
           this.text4 = '';
+          this.links = [];
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -155,10 +171,21 @@ export class StoryComponent implements OnInit {
           this.text2 = '';
           this.text3 = '';
           this.text4 = '';
+          this.links = [];
         }
       );
   }
   // end delete
+
+  updateLink(event:any, field:string, index:number){
+    let val = event.target.value
+    if(field=='title'){
+      this.links[index].title = val;
+    }
+    else if(field='href'){
+      this.links[index].href = val;
+    }
+  }
 
 
   private getDismissReason(reason: any): string {
@@ -214,6 +241,7 @@ export class StoryComponent implements OnInit {
         newInst.append('text4', this.text4);
         newInst.append('location', this.location);
         newInst.append('year', this.year.toString());
+        newInst.append('links',JSON.stringify(this.links));
 
         console.log(this.image1, this.image2);
 
@@ -230,6 +258,7 @@ export class StoryComponent implements OnInit {
           this.year = undefined;
           this.image1 = undefined;
           this.image2 = undefined;
+          this.links = []
 
           this.isLoading = false;
           this.modalService.dismissAll('Submitted successfully');
@@ -249,17 +278,32 @@ export class StoryComponent implements OnInit {
       ) {
         this.isLoading = true;
 
+        let updateInst = new FormData();
+        let changes = []
+        if(this.image1){
+          updateInst.append('imgs', this.image1);
+          changes.push(1);
+        }
+        if(this.image2){
+          updateInst.append('imgs', this.image2);
+          changes.push(2);
+        }
+        
+        updateInst.append('title', this.title);
+        updateInst.append('text1', this.text1);
+        updateInst.append('text2', this.text2);
+        updateInst.append('text3', this.text3);
+        updateInst.append('text4', this.text4);
+        updateInst.append('location', this.location);
+        updateInst.append('year', this.year.toString());
+        updateInst.append('links',JSON.stringify(this.links));
+        updateInst.append('_id',this.updatingID);
+        if(changes.length != 0){
+          updateInst.append('changes',JSON.stringify(changes));
+        }
+
         this.storyService
-          .putStory({
-            title: this.title,
-            location: this.location,
-            year: this.year,
-            text1: this.text1,
-            text2: this.text2,
-            text3: this.text3,
-            text4: this.text4,
-            _id: this.updatingID,
-          })
+          .putStory(updateInst)
           .subscribe((see) => {
             this.storyService.updateStory(see.data);
             this.isLoading = false;
@@ -270,6 +314,8 @@ export class StoryComponent implements OnInit {
       }
     }
   }
+
+  
 
 
   // main delete operation

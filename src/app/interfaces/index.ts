@@ -20,6 +20,16 @@ export interface Work {
     description4: string,
     photoLink5: string,
     featured: boolean,
+
+    photoLink6: string;
+    photoLink7: string;
+    photoLink8: string;
+    photoLink9: string;
+    photoLink10: string;
+    photoLink11: string;
+    photoLink12: string;
+    carousel0: string[];
+    carousel1: string[];
     __v: number
 }
 
@@ -43,6 +53,7 @@ export interface Story {
     text3: string,
     text4: string,
     image2: string,
+    links: object[]
     __v: string
 }
 
