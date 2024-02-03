@@ -682,36 +682,28 @@
                 
             </div><br><br>
             <h4>Section 5 (Recommended Image Size: 1400px x 700px)</h4><br>
-            <div class="large-img"
-                [ngStyle]="{'background-image': 'url(' + section_3_img_3 + ')', 'background-size': bg_size_3_3}">
-                <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')">
-            </div><br><br>
-
-            <div class="part-images">
-                <div class="penta-image"
-                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
-                </div>
-                
-                <div class="penta-image"
-                    [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
-                </div>
-                <div class="penta-image"
-                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
-                </div>
-                <div class="penta-image"
-                    [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
-                </div>
-                <br>
-                <br>
-                <div class="penta-image"
-                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
-                </div>
-            </div>
+            <!-- app.component.html -->
+<div class="section-5">
+  <label for="imageInput" class="choose-image-button">
+    hi there
+    <input type="file" id="imageInput" accept="image/*" (change)="onImageSelected($event)">
+  </label>
+      
+  <div class="container">
+    <!-- Container to show selected image -->
+    <div id="selectedImageContainer" class="selected-image-container">
+      <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="selected-image">
+    </div>
+  
+    <!-- Image list container -->
+    <div id="imageList" class="image-list">
+      <ng-container *ngFor="let image of imageList; let i = index" class="image-ite">
+        <img [src]="image" alt="Image" class="image-preview" (click)="displayPreview(i)">
+        <button  class="delete-button" (click)="deleteImage(i)"></button>
+      </ng-container>
+    </div>
+  </div>
+  </div>    
             
             <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
             <br><br>
