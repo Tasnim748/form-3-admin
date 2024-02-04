@@ -1,5 +1,5 @@
 import { Component, inject, TemplateRef, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbCarouselConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient } from '@angular/common/http';
 import { Work, placeHolderThumb } from 'src/app/interfaces';
@@ -13,7 +13,9 @@ import _default from '@popperjs/core/lib/modifiers/popperOffsets';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+  placeHolderThumbUrl:string = placeHolderThumb;
 
   selectedImage: string | null = null;
   imageList: string[] = [];
@@ -22,7 +24,15 @@ export class ProjectComponent implements OnInit {
     return this.mainService.works;
   }
 
-  constructor(private http: HttpClient, private mainService: MainService) {}
+  constructor(private http: HttpClient, private mainService: MainService, config: NgbCarouselConfig) {
+
+  }
+
+  OnCar1Click(id:number){
+    console.log(this.images[id]);
+    this.images.splice(id,1);
+  }
+
 
   ngOnInit(): void {
     this.mainService.getWorks().subscribe((things) => {
@@ -40,7 +50,7 @@ export class ProjectComponent implements OnInit {
 
   // all ng models
   title: string;
-  category: string;
+  category: string = '';
 
   description_1: string = '';
   img_1: File | null;
@@ -268,7 +278,7 @@ export class ProjectComponent implements OnInit {
   section_3_img_1: string = placeHolderThumb;
   section_3_img_2: string = placeHolderThumb;
   section_3_img_3: string = placeHolderThumb;
-  
+
   preview_img_7: string = placeHolderThumb;
   preview_img_8: string = placeHolderThumb;
   preview_img_9: string = placeHolderThumb;
@@ -499,7 +509,7 @@ export class ProjectComponent implements OnInit {
         formData.append('car1',this.car1[1])
       }
 
-      
+
 
       formData.append('title', this.title);
       formData.append('category', this.category);

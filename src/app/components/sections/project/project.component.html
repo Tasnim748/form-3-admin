@@ -19,10 +19,7 @@
           </div>
         </div>
         <div class="sides">
-          <img
-            src="assets/svgs/edit.svg"
-            alt="edit"
-            (click)="
+          <img src="assets/svgs/edit.svg" alt="edit" (click)="
               openModalUpdate(
                 newProject,
                 work.title,
@@ -33,13 +30,8 @@
                 work.category,
                 work._id
               )
-            "
-          />
-          <img
-            src="assets/svgs/delete.svg"
-            alt="delete"
-            (click)="openDelete(deleteProject, work._id)"
-          />
+            " />
+          <img src="assets/svgs/delete.svg" alt="delete" (click)="openDelete(deleteProject, work._id)" />
         </div>
       </div>
       <br />
@@ -52,38 +44,21 @@
     <h4 class="modal-title">
       {{ updating ? "Edit Project" : "Add New Project" }}
     </h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body row">
     <div class="form-body col-9">
       <div class="btn-groups" *ngIf="!updating">
-        <button
-          (click)="selectTemplate(1)"
-          [ngClass]="{ 'template-selection': whichTemplate == 1 }"
-        >
+        <button (click)="selectTemplate(1)" [ngClass]="{ 'template-selection': whichTemplate == 1 }">
           Template 1
         </button>
-        <button
-          (click)="selectTemplate(2)"
-          [ngClass]="{ 'template-selection': whichTemplate == 2 }"
-        >
+        <button (click)="selectTemplate(2)" [ngClass]="{ 'template-selection': whichTemplate == 2 }">
           Template 2
         </button>
-        <button
-          (click)="selectTemplate(3)"
-          [ngClass]="{ 'template-selection': whichTemplate == 3 }"
-        >
+        <button (click)="selectTemplate(3)" [ngClass]="{ 'template-selection': whichTemplate == 3 }">
           Template 3
         </button>
-        <button
-          (click)="selectTemplate(4)"
-          [ngClass]="{ 'template-selection': whichTemplate == 4 }"
-        >
+        <button (click)="selectTemplate(4)" [ngClass]="{ 'template-selection': whichTemplate == 4 }">
           Template 4
         </button>
       </div>
@@ -105,34 +80,13 @@
     </div>
     <div class="preview col-3" *ngIf="!updating">
       <ng-container [ngSwitch]="whichTemplate">
-        <img
-          *ngSwitchCase="1"
-          src="https://server.form3a.net/images/Template_1.jpg"
-          width="100%"
-          height="100%"
-          alt=""
-        />
-        <img
-          *ngSwitchCase="2"
-          src="https://server.form3a.net/images/Template_2.jpg"
-          width="100%"
-          height="100%"
-          alt=""
-        />
-        <img
-          *ngSwitchCase="3"
-          src="https://server.form3a.net/images/Template_3.jpg"
-          width="100%"
-          height="100%"
-          alt=""
-        />
-        <img
-          *ngSwitchCase="4"
-          src="../../../../assets/svgs/temp4 img.svg"
-          width="100%"
-          height="100%"
-          alt=""
-        />
+        <img *ngSwitchCase="1" src="https://server.form3a.net/images/Template_1.jpg" width="100%" height="100%"
+          alt="" />
+        <img *ngSwitchCase="2" src="https://server.form3a.net/images/Template_2.jpg" width="100%" height="100%"
+          alt="" />
+        <img *ngSwitchCase="3" src="https://server.form3a.net/images/Template_3.jpg" width="100%" height="100%"
+          alt="" />
+        <img *ngSwitchCase="4" src="../../../../assets/svgs/temp4 img.svg" width="100%" height="100%" alt="" />
       </ng-container>
     </div>
   </div>
@@ -147,18 +101,8 @@
     <br /><br />
 
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project Name"
-        [(ngModel)]="title"
-      /><br />
-      <select
-        type="text"
-        class="form-control"
-        placeholder="Category"
-        [(ngModel)]="category"
-      >
+      <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
+      <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -172,18 +116,11 @@
 
       <h4>Section 1 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_1_img + ')',
           'background-size': bg_size_1
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_1')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
@@ -191,18 +128,11 @@
 
       <h4>Section 2 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_2_img + ')',
           'background-size': bg_size_2
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_2')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
@@ -213,43 +143,24 @@
       </h4>
       <br />
       <div class="part-images">
-        <div
-          class="indiv-image"
-          [ngStyle]="{
+        <div class="indiv-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_1 + ')',
             'background-size': bg_size_3_1
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_1')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
         </div>
         <div class="indiv-image">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_2 + ')',
               'background-size': bg_size_3_2
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_2')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
           </div>
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_3 + ')',
               'background-size': bg_size_3_3
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_3')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
           </div>
         </div>
       </div>
@@ -259,29 +170,17 @@
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_4_img + ')',
           'background-size': bg_size_4
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_4')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_4"></editor>
       <br /><br />
-      <button
-        type="button"
-        *ngIf="!isLoading; else loader"
-        class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px"
-        (click)="submitThings('template1')"
-      >
+      <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
+        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template1')">
         Save
       </button>
     </div>
@@ -297,18 +196,8 @@
     <br /><br />
 
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project Name"
-        [(ngModel)]="title"
-      /><br />
-      <select
-        type="text"
-        class="form-control"
-        placeholder="Category"
-        [(ngModel)]="category"
-      >
+      <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
+      <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -322,18 +211,11 @@
 
       <h4>Section 1 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_1_img + ')',
           'background-size': bg_size_1
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_1')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
@@ -344,43 +226,24 @@
       </h4>
       <br />
       <div class="part-images">
-        <div
-          class="indiv-image"
-          [ngStyle]="{
+        <div class="indiv-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
         <div class="indiv-image">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_1 + ')',
               'background-size': bg_size_3_1
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_1')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
           </div>
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_2 + ')',
               'background-size': bg_size_3_2
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_2')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
           </div>
         </div>
       </div>
@@ -389,46 +252,27 @@
 
       <h4>Section 3 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_4_img + ')',
           'background-size': bg_size_4
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_4')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br /><br />
-      <button
-        type="button"
-        *ngIf="!isLoading; else loader"
-        class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px"
-        (click)="submitThings('template2')"
-      >
+      <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
+        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template2')">
         Save
       </button>
     </div>
@@ -444,18 +288,8 @@
     <br /><br />
 
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project Name"
-        [(ngModel)]="title"
-      /><br />
-      <select
-        type="text"
-        class="form-control"
-        placeholder="Category"
-        [(ngModel)]="category"
-      >
+      <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
+      <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -469,19 +303,11 @@
 
       <h4>Section 1 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        id="section-img-1"
-        [ngStyle]="{
+      <div class="large-img" id="section-img-1" [ngStyle]="{
           'background-image': 'url(' + section_1_img + ')',
           'background-size': bg_size_1
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_1')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
@@ -490,90 +316,50 @@
       <h4>Section 2 (Recommended Image Size: 460px x 700px)</h4>
       <br />
       <div class="part-images">
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_1 + ')',
             'background-size': bg_size_3_1
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_1')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
         </div>
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_2 + ')',
             'background-size': bg_size_3_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
         </div>
       </div>
       <br /><br />
 
       <h4>Section 3 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_4_img + ')',
           'background-size': bg_size_4
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_4')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br /><br />
-      <button
-        type="button"
-        *ngIf="!isLoading; else loader"
-        class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px"
-        (click)="submitThings('template3')"
-      >
+      <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
+        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template3')">
         Save
       </button>
     </div>
@@ -589,18 +375,9 @@
     <br /><br />
 
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project Name"
-        [(ngModel)]="title"
-      /><br />
-      <select
-        type="text"
-        class="form-control"
-        placeholder="Category"
-        [(ngModel)]="category"
-      >
+      <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
+      <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+        <option value="">Select Category</option>
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -614,142 +391,139 @@
 
       <h4>Section 1 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        id="section-img-1"
-        [ngStyle]="{
+      <div class="large-img" id="section-img-1" [ngStyle]="{
           'background-image': 'url(' + section_1_img + ')',
           'background-size': bg_size_1
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_1')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_1')" />
       </div>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
       <br />
 
-      <h4>Section 2 (Recommended Image Size: 460px x 700px)</h4>
+      <h4>Section 2 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_2_img + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_2')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
       </div>
       <br /><br />
 
       <h4>Section 3 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
 
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
-      <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
+      <h4>Section 4 (Recommended Image Size: 670px x 700px)</h4>
       <br />
 
-            <div class="part-images">
-                <div class="triple-image"
-                    [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
-                </div>
-                <div class="triple-image"
-                    [ngStyle]="{'background-image': 'url(' + section_3_img_1 + ')', 'background-size': bg_size_3_1}">
-                    <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')">
-                </div>
-                
-            </div><br><br>
-            <h4>Section 5 (Recommended Image Size: 1400px x 700px)</h4><br>
-            <!-- app.component.html -->
-<div class="section-5">
-  <label for="imageInput" class="choose-image-button">
-    hi there
-    <input type="file" id="imageInput" accept="image/*" (change)="onImageSelected($event)">
-  </label>
-      
-  <div class="container">
-    <!-- Container to show selected image -->
-    <div id="selectedImageContainer" class="selected-image-container">
-      <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="selected-image">
-    </div>
-  
-    <!-- Image list container -->
-    <div id="imageList" class="image-list">
-      <ng-container *ngFor="let image of imageList; let i = index" class="image-ite">
-        <img [src]="image" alt="Image" class="image-preview" (click)="displayPreview(i)">
-        <button  class="delete-button" (click)="deleteImage(i)"></button>
-      </ng-container>
-    </div>
-  </div>
-  </div>    
-            
-            <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
-            <br><br>
+      <div class="part-images row">
+        <div class="double-image"
+          [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+        </div>
+        <div class="double-image"
+          [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+        </div>
+
+      </div><br><br>
+      <h4>Section 5 (Recommended Image Size: 1400px x 700px)</h4>
+      <button class="carousel-buttons">
+        Template 3
+      </button>
+      <br>
+
+      <!-- <div class="section-5">
+        <label for="imageInput" class="choose-image-button">
+          hi there
+          <input type="file" id="imageInput" accept="image/*" (change)="onImageSelected($event)">
+        </label>
+
+        <div class="container">
+
+          <div id="selectedImageContainer" class="selected-image-container">
+            <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="selected-image">
+          </div>
+
+
+          <div id="imageList" class="image-list">
+            <ng-container *ngFor="let image of imageList; let i = index" class="image-ite">
+              <img [src]="image" alt="Image" class="image-preview" (click)="displayPreview(i)">
+              <button class="delete-button" (click)="deleteImage(i)"></button>
+            </ng-container>
+          </div>
+        </div>
+      </div> -->
+      <div *ngIf="images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': bg_size_3_3
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+      </div>
+      <ngb-carousel *ngIf="images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCar1Click(i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3>Click to delete Image</h3>
+          </div>
+        </ng-template>
+        <!-- <ng-template ngbSlide>
+          <div class="picsum-img-wrapper" (click)="OnCar1Click(1)">
+            <img [src]="images[1]" alt="Random second slide" />
+          </div>
+          <div class="carousel-caption">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[2]" alt="Random third slide" />
+          </div>
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template> -->
+      </ngb-carousel>
+      <br>
+
+
+      <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+      <br><br>
 
       <h4>Section 6 (Recommended Image Size: 460px x 700px)</h4>
       <br />
 
       <div class="part-images">
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_1 + ')',
             'background-size': bg_size_3_1
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_1')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
         </div>
-        <div
-          class="triple-image"
-          [ngStyle]="{
+        <div class="triple-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_2 + ')',
             'background-size': bg_size_3_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
         </div>
       </div>
       <br /><br />
@@ -757,18 +531,11 @@
       <h4>Section 7 (Recommended Image Size: 460px x 700px)</h4>
       <br />
 
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
@@ -778,116 +545,62 @@
       <br />
 
       <div class="part-images">
-        <div
-          class="indiv-image"
-          [ngStyle]="{
+        <div class="indiv-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
         <div class="indiv-image">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_1 + ')',
               'background-size': bg_size_3_1
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_1')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
           </div>
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_2 + ')',
               'background-size': bg_size_3_2
-            }"
-          >
-            <input
-              type="file"
-              class="form-control"
-              (change)="getImagePreview($event, 'sec_3_2')"
-            />
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
           </div>
         </div>
       </div>
       <br />
 
       <div class="part-images">
-        <div
-          class="penta-image"
-          [ngStyle]="{
+        <div class="penta-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
 
-        <div
-          class="penta-image"
-          [ngStyle]="{
+        <div class="penta-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_1 + ')',
             'background-size': bg_size_3_1
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_1')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
         </div>
-        <div
-          class="penta-image"
-          [ngStyle]="{
+        <div class="penta-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
-        <div
-          class="penta-image"
-          [ngStyle]="{
+        <div class="penta-image" [ngStyle]="{
             'background-image': 'url(' + section_3_img_1 + ')',
             'background-size': bg_size_3_1
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_3_1')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
         </div>
         <br />
         <br />
-        <div
-          class="penta-image"
-          [ngStyle]="{
+        <div class="penta-image" [ngStyle]="{
             'background-image': 'url(' + section_2_img + ')',
             'background-size': bg_size_2
-          }"
-        >
-          <input
-            type="file"
-            class="form-control"
-            (change)="getImagePreview($event, 'sec_2')"
-          />
+          }">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
       </div>
       <br />
@@ -897,46 +610,27 @@
       <h4>Section 9 (Recommended Image Size: 460px x 700px)</h4>
       <br />
 
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
       <h4>Section 10 (Recommended Image Size: 460px x 700px)</h4>
       <br />
 
-      <div
-        class="large-img"
-        [ngStyle]="{
+      <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_3_img_3 + ')',
           'background-size': bg_size_3_3
-        }"
-      >
-        <input
-          type="file"
-          class="form-control"
-          (change)="getImagePreview($event, 'sec_3_3')"
-        />
+        }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
       </div>
       <br /><br />
 
-      <button
-        type="button"
-        *ngIf="!isLoading; else loader"
-        class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px"
-        (click)="submitThings('template3')"
-      >
+      <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
+        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template3')">
         Save
       </button>
     </div>
@@ -952,18 +646,8 @@
     <br /><br />
 
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project Name"
-        [(ngModel)]="title"
-      /><br />
-      <select
-        type="text"
-        class="form-control"
-        placeholder="Category"
-        [(ngModel)]="category"
-      >
+      <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
+      <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -994,13 +678,8 @@
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_4"></editor>
       <br /><br />
-      <button
-        type="button"
-        *ngIf="!isLoading; else loader"
-        class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px"
-        (click)="updateThings()"
-      >
+      <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
+        style="border-radius: 0%; padding: 10px 50px" (click)="updateThings()">
         Save
       </button>
     </div>
@@ -1010,28 +689,14 @@
 <ng-template #deleteProject let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Delete Project</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">Do you sure want to delete?</div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      style="border-radius: 0%"
-      (click)="mainDelete(deletingID)"
-    >
+    <button type="button" class="btn btn-outline-dark" style="border-radius: 0%" (click)="mainDelete(deletingID)">
       Yes
     </button>
-    <button
-      class="btn btn-outline-dark"
-      style="border-radius: 0%"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button class="btn btn-outline-dark" style="border-radius: 0%" (click)="modal.dismiss('Cross click')">
       No
     </button>
   </div>
@@ -1040,31 +705,17 @@
 <ng-template #featuredProject let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Set Featured Project</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body" style="padding: 5%">
-    <select
-      type="text"
-      class="form-control"
-      placeholder="Set Featured"
-      [(ngModel)]="featuredID"
-    >
+    <select type="text" class="form-control" placeholder="Set Featured" [(ngModel)]="featuredID">
       <ng-container *ngFor="let work of works">
         <option [value]="work._id">{{ work.title }}</option>
       </ng-container>
     </select>
   </div>
   <div class="modal-footer">
-    <button
-      class="btn btn-outline-dark"
-      style="border-radius: 0%"
-      (click)="setFeatured()"
-    >
+    <button class="btn btn-outline-dark" style="border-radius: 0%" (click)="setFeatured()">
       Save
     </button>
   </div>
