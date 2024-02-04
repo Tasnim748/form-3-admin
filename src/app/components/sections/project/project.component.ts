@@ -13,7 +13,8 @@ import _default from '@popperjs/core/lib/modifiers/popperOffsets';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  car0_images: string[] = [];
+  car1_images: string[] = [];
 
   placeHolderThumbUrl:string = placeHolderThumb;
 
@@ -25,12 +26,21 @@ export class ProjectComponent implements OnInit {
   }
 
   constructor(private http: HttpClient, private mainService: MainService, config: NgbCarouselConfig) {
-
+    //config.showNavigationIndicators = false
   }
 
-  OnCar1Click(id:number){
-    console.log(this.images[id]);
-    this.images.splice(id,1);
+  OnCarClick(element:string,id:number){
+    if(element == 'car0'){
+      console.log(this.car0_images[id]);
+      this.car0_images.splice(id,1);
+      this.car0.splice(id,1);
+    }
+    else if(element == 'car1'){
+      console.log(this.car1_images[id]);
+      this.car1_images.splice(id,1);
+      this.car1.splice(id,1);
+    }
+    
   }
 
 
@@ -449,6 +459,30 @@ export class ProjectComponent implements OnInit {
           this.bg_size_12 = 'inherit';
         }
         break;
+
+        case 'car0':
+          this.car0.push(event.target.files[0]);
+        //console.log(this.img_3_3);
+          try {
+            let imgUrl = URL.createObjectURL(event.target.files[0]);
+            this.car0_images.push(imgUrl);
+          } catch (e) {
+            this.preview_img_12 = placeHolderThumb;
+            this.bg_size_12 = 'inherit';
+          }
+          break;
+        case 'car1':
+          this.car1.push(event.target.files[0]);
+          //console.log(this.img_3_3);
+          try {
+            let imgUrl = URL.createObjectURL(event.target.files[0]);
+            this.car1_images.push(imgUrl);
+          } catch (e) {
+            this.preview_img_12 = placeHolderThumb;
+            this.bg_size_12 = 'inherit';
+          }
+          break;
+        
 
     }
   }
