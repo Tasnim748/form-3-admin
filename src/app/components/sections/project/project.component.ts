@@ -16,6 +16,8 @@ export class ProjectComponent implements OnInit {
   car0_images: string[] = [];
   car1_images: string[] = [];
 
+  car_max_limit= 15;
+
   placeHolderThumbUrl:string = placeHolderThumb;
 
   selectedImage: string | null = null;
@@ -47,7 +49,8 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.mainService.getWorks().subscribe((things) => {
       this.mainService.setWorks(things);
-    });
+      this.featuredID= this.loadDefaultFeatured()
+    }); 
   }
 
   // editor configs
@@ -147,6 +150,11 @@ export class ProjectComponent implements OnInit {
           this.img_12 = null;
           this.img_13 = null;
 
+          this.car0 = []
+          this.car1 = []
+          this.car0_images = []
+          this.car1_images = []
+
 
 
           this.updating = false;
@@ -191,6 +199,12 @@ export class ProjectComponent implements OnInit {
           this.img_12 = null;
           this.img_13 = null;
           this.updating = false;
+
+          this.car0 = []
+          this.car1 = []
+
+          this.car0_images = []
+          this.car1_images = []
         }
       );
   }
@@ -459,24 +473,38 @@ export class ProjectComponent implements OnInit {
           this.bg_size_12 = 'inherit';
         }
         break;
+        case 'preview_13':
+        this.img_13 = event.target.files[0];
+        //console.log(this.img_3_3);
+        try {
+          let imgUrl = URL.createObjectURL(event.target.files[0]);
+          this.preview_img_13 = imgUrl;
+          this.bg_size_13 = 'cover';
+        } catch (e) {
+          this.preview_img_13 = placeHolderThumb;
+          this.bg_size_13 = 'inherit';
+        }
+        break;
 
         case 'car0':
-          this.car0.push(event.target.files[0]);
+          this.car0.push(...event.target.files);
         //console.log(this.img_3_3);
           try {
-            let imgUrl = URL.createObjectURL(event.target.files[0]);
-            this.car0_images.push(imgUrl);
+            for(let file of event.target.files){
+              this.car0_images.push(URL.createObjectURL(file))
+            }
           } catch (e) {
             this.preview_img_12 = placeHolderThumb;
             this.bg_size_12 = 'inherit';
           }
           break;
         case 'car1':
-          this.car1.push(event.target.files[0]);
+          this.car1.push(...event.target.files);
           //console.log(this.img_3_3);
           try {
-            let imgUrl = URL.createObjectURL(event.target.files[0]);
-            this.car1_images.push(imgUrl);
+            for(let file of event.target.files){
+              this.car1_images.push(URL.createObjectURL(file))
+            }
           } catch (e) {
             this.preview_img_12 = placeHolderThumb;
             this.bg_size_12 = 'inherit';
@@ -498,19 +526,36 @@ export class ProjectComponent implements OnInit {
     let formData: FormData = new FormData();
 
     if (
-      this.img_1 &&
-      this.img_2 &&
-      this.img_3_1 &&
-      this.img_3_2 &&
-      this.img_3_3 &&
-      this.img_4
+      true
+      // this.img_1 &&
+      // this.img_2 &&
+      // this.img_3_1 &&
+      // this.img_3_2 &&
+      // this.img_3_3 &&
+      // this.img_4 &&
+      // this.car0.length !=0 &&
+      // this.car0.length !=0
     ) {
-      formData.append('imgs', this.img_1);
-      formData.append('imgs', this.img_2);
-      formData.append('imgs', this.img_3_1);
-      formData.append('imgs', this.img_3_2);
-      formData.append('imgs', this.img_3_3);
-      formData.append('imgs', this.img_4);
+      if(this.img_1){
+        formData.append('imgs', this.img_1);
+      }
+      if(this.img_2){
+        formData.append('imgs', this.img_2);
+      }
+      if(this.img_3_1){
+        formData.append('imgs', this.img_3_1);
+      }
+      if(this.img_3_2){
+        formData.append('imgs', this.img_3_2);
+      }
+      if(this.img_3_3){
+        formData.append('imgs', this.img_3_3);
+      }
+      if(this.img_4){
+        formData.append('imgs', this.img_4);
+      }
+      
+      
 
       if (this.img_7) {
         formData.append('imgs', this.img_7);
@@ -536,14 +581,17 @@ export class ProjectComponent implements OnInit {
       }
 
       for(let i = 0;i<this.car0.length;i++){
-        formData.append('car0',this.car0[1])
+        formData.append('car0',this.car0[i])
       }
+
+      console.log(this.car0)
 
       for(let i = 0;i<this.car1.length;i++){
-        formData.append('car1',this.car1[1])
+        formData.append('car1',this.car1[i])
       }
+      console.log(this.car1)
 
-
+      
 
       formData.append('title', this.title);
       formData.append('category', this.category);
@@ -578,6 +626,20 @@ export class ProjectComponent implements OnInit {
             this.category &&
             this.description_1 &&
             this.description_2
+          ) {
+          } else {
+            alert('All fields are required!');
+            this.isLoading = false;
+            return;
+          }
+          break;
+        case 'template4':
+          if (
+            this.title &&
+            this.category &&
+            this.description_1 &&
+            this.description_2 &&
+            this.description_3
           ) {
           } else {
             alert('All fields are required!');
@@ -624,7 +686,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  featuredID: string = this.loadDefaultFeatured()
+  featuredID: string
 
   loadDefaultFeatured(){
     let featuredWorks = this.works.filter((element)=>{
@@ -639,12 +701,12 @@ export class ProjectComponent implements OnInit {
       return featuredWorks[0]._id;
     }
 
-    return '-1';
+    return '';
   }
 
   setFeatured() {
     console.log(this.featuredID);
-    if (this.featuredID == '-1') {
+    if (this.featuredID == '') {
       return;
     }
     this.mainService.setFeatured(this.featuredID).subscribe((resp) => {
@@ -665,32 +727,32 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  deleteImage(index: number): void {
-    this.imageList.splice(index, 1);
+  // deleteImage(index: number): void {
+  //   this.imageList.splice(index, 1);
 
-  }
+  // }
 
-  displayPreview(index: number): void {
-    this.selectedImage = this.imageList[index];
-    this.renderSelectedImage();
-    console.log('hi')
-  }
+  // displayPreview(index: number): void {
+  //   this.selectedImage = this.imageList[index];
+  //   this.renderSelectedImage();
+  //   console.log('hi')
+  // }
 
 
-  renderSelectedImage(): void {
-    const selectedImageContainer = document.getElementById('selectedImageContainer');
+  // renderSelectedImage(): void {
+  //   const selectedImageContainer = document.getElementById('selectedImageContainer');
 
-    if (selectedImageContainer) {
-      selectedImageContainer.innerHTML = '';
+  //   if (selectedImageContainer) {
+  //     selectedImageContainer.innerHTML = '';
 
-      if (this.selectedImage) {
-        const imgElement = document.createElement('img');
-        imgElement.src = this.selectedImage;
-        imgElement.alt = 'Selected Image';
-        imgElement.classList.add('selected-image');
+  //     if (this.selectedImage) {
+  //       const imgElement = document.createElement('img');
+  //       imgElement.src = this.selectedImage;
+  //       imgElement.alt = 'Selected Image';
+  //       imgElement.classList.add('selected-image');
 
-        selectedImageContainer.appendChild(imgElement);
-      }
-    }
-  }
+  //       selectedImageContainer.appendChild(imgElement);
+  //     }
+  //   }
+  // }
 }

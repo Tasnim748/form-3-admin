@@ -103,6 +103,7 @@
     <div>
       <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
       <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+        <option value="">Select Category</option>
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -128,12 +129,28 @@
 
       <h4>Section 2 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_2_img + ')',
-          'background-size': bg_size_2
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
+      <label for="imageInput3" class="choose-image-button" *ngIf="car0_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput3" accept="image/*" (change)="getImagePreview($event, 'car0')" multiple>
+      </label>
+      
+
+      <div *ngIf="car0_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car0')" multiple/>
       </div>
+      <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br />
@@ -170,12 +187,29 @@
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_4_img + ')',
-          'background-size': bg_size_4
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
+      <label for="imageInput4" class="choose-image-button" *ngIf="car1_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput4" accept="image/*" (change)="getImagePreview($event, 'car1')" multiple>
+      </label>
+      
+
+      <div *ngIf="car1_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car1')" multiple/>
       </div>
+      <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car1',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <br>
       <br />
       <editor [init]="editorConfig" [(ngModel)]="description_4"></editor>
       <br /><br />
@@ -198,6 +232,7 @@
     <div>
       <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
       <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+        <option value="">Select Category</option>
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -252,23 +287,55 @@
 
       <h4>Section 3 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_3_img_3 + ')',
-          'background-size': bg_size_3_3
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+      <label for="imageInput5" class="choose-image-button" *ngIf="car0_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput5" accept="image/*" (change)="getImagePreview($event, 'car0')" multiple>
+      </label>
+      
+
+      <div *ngIf="car0_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car0')" multiple/>
       </div>
-      <br /><br />
+      <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <br>
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_4_img + ')',
-          'background-size': bg_size_4
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
+      <label for="imageInput6" class="choose-image-button" *ngIf="car1_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput6" accept="image/*" (change)="getImagePreview($event, 'car1')" multiple>
+      </label>
+      
+
+      <div *ngIf="car1_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car1')" multiple/>
       </div>
-      <br />
+      <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car1',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <br>
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br /><br />
       <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
@@ -290,6 +357,7 @@
     <div>
       <input type="text" class="form-control" placeholder="Project Name" [(ngModel)]="title" /><br />
       <select type="text" class="form-control" placeholder="Category" [(ngModel)]="category">
+        <option value="">Select Category</option>
         <option value="Awarded Projects">Awarded Projects</option>
         <option value="Old Dhaka Central Jail">Old Dhaka Central Jail</option>
         <option value="Public Amenities">Public Amenities</option>
@@ -339,23 +407,55 @@
 
       <h4>Section 3 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_3_img_3 + ')',
-          'background-size': bg_size_3_3
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+      <label for="imageInput7" class="choose-image-button" *ngIf="car0_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput7" accept="image/*" (change)="getImagePreview($event, 'car0')" multiple>
+      </label>
+      
+
+      <div *ngIf="car0_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car0')" multiple/>
       </div>
-      <br /><br />
+      <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <br>
 
       <h4>Section 4 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
-      <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_4_img + ')',
-          'background-size': bg_size_4
-        }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
+      <label for="imageInput8" class="choose-image-button" *ngIf="car1_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput8" accept="image/*" (change)="getImagePreview($event, 'car1')" multiple>
+      </label>
+      
+
+      <div *ngIf="car1_images.length==0" class="large-img" [ngStyle]="{
+                'background-image': 'url(' + placeHolderThumbUrl + ')',
+                'background-size': 'cover'
+              }">
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car1')" multiple/>
       </div>
-      <br />
+      <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
+        <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
+          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+            <img [src]="img" alt="Random first slide" class="img-fluid" />
+          </div>
+          <div class="carousel-caption">
+            <h3 style="z-index: 5;">Click to delete Image</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <br>
       <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br /><br />
       <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
@@ -405,7 +505,7 @@
       <br />
       <div class="large-img" [ngStyle]="{
           'background-image': 'url(' + section_2_img + ')',
-          'background-size': bg_size_3_3
+          'background-size': bg_size_2
         }">
         <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
       </div>
@@ -415,10 +515,10 @@
       <br />
 
       <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_3_img_3 + ')',
-          'background-size': bg_size_3_3
+          'background-image': 'url(' + section_3_img_1 + ')',
+          'background-size': bg_size_3_1
         }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
       </div>
       <br /><br />
 
@@ -427,19 +527,19 @@
 
       <div class="part-images row">
         <div class="double-image"
-          [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+          [ngStyle]="{'background-image': 'url(' + section_3_img_2 + ')', 'background-size': bg_size_3_2}">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')">
         </div>
         <div class="double-image"
-          [ngStyle]="{'background-image': 'url(' + section_2_img + ')', 'background-size': bg_size_2}">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')">
+          [ngStyle]="{'background-image': 'url(' + section_3_img_3 + ')', 'background-size': bg_size_3_3}">
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')">
         </div>
 
       </div><br><br>
       <h4>Section 5 (Recommended Image Size: 1400px x 700px)</h4>
-      <label for="imageInput" class="choose-image-button">
-        Add Image to Caurosel
-        <input type="file" id="imageInput" accept="image/*" (change)="getImagePreview($event, 'car0')">
+      <label for="imageInput" class="choose-image-button" *ngIf="car0_images.length<=car_max_limit">
+        Add Image to Carousel
+        <input type="file" id="imageInput" accept="image/*" (change)="getImagePreview($event, 'car0')" multiple>
       </label>
       
 
@@ -466,9 +566,9 @@
       </div> -->
       <div *ngIf="car0_images.length==0" class="large-img" [ngStyle]="{
                 'background-image': 'url(' + placeHolderThumbUrl + ')',
-                'background-size': bg_size_3_3
+                'background-size': 'cover'
               }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'car0')" />
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car0')" multiple/>
       </div>
       <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
@@ -501,7 +601,7 @@
       <br>
 
 
-      <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+      <editor [init]="editorConfig" [(ngModel)]="description_2"></editor>
       <br><br>
 
       <h4>Section 6 (Recommended Image Size: 460px x 700px)</h4>
@@ -509,22 +609,22 @@
 
       <div class="part-images">
         <div class="triple-image" [ngStyle]="{
-            'background-image': 'url(' + section_2_img + ')',
-            'background-size': bg_size_2
+            'background-image': 'url(' + section_4_img + ')',
+            'background-size': bg_size_4
           }">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_4')" />
         </div>
         <div class="triple-image" [ngStyle]="{
-            'background-image': 'url(' + section_3_img_1 + ')',
-            'background-size': bg_size_3_1
+            'background-image': 'url(' + preview_img_7 + ')',
+            'background-size': bg_size_7
           }">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_7')" />
         </div>
         <div class="triple-image" [ngStyle]="{
-            'background-image': 'url(' + section_3_img_2 + ')',
-            'background-size': bg_size_3_2
+            'background-image': 'url(' + preview_img_8 + ')',
+            'background-size': bg_size_8
           }">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_8')" />
         </div>
       </div>
       <br /><br />
@@ -533,10 +633,10 @@
       <br />
 
       <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_3_img_3 + ')',
-          'background-size': bg_size_3_3
+          'background-image': 'url(' + preview_img_9 + ')',
+          'background-size': bg_size_9
         }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_9')" />
       </div>
       <br /><br />
 
@@ -547,23 +647,23 @@
 
       <div class="part-images">
         <div class="indiv-image" [ngStyle]="{
-            'background-image': 'url(' + section_2_img + ')',
-            'background-size': bg_size_2
+            'background-image': 'url(' + preview_img_10 + ')',
+            'background-size': bg_size_10
           }">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_10')" />
         </div>
         <div class="indiv-image">
           <div [ngStyle]="{
-              'background-image': 'url(' + section_3_img_1 + ')',
-              'background-size': bg_size_3_1
+              'background-image': 'url(' + preview_img_11 + ')',
+              'background-size': bg_size_11
             }">
-            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_11')" />
           </div>
           <div [ngStyle]="{
-              'background-image': 'url(' + section_3_img_2 + ')',
-              'background-size': bg_size_3_2
+              'background-image': 'url(' + preview_img_12 + ')',
+              'background-size': bg_size_12
             }">
-            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_12')" />
           </div>
         </div>
       </div>
@@ -605,23 +705,23 @@
         </div>
       </div> -->
       <br />
-      <editor [init]="editorConfig" [(ngModel)]="description_1"></editor>
+      <editor [init]="editorConfig" [(ngModel)]="description_3"></editor>
       <br />
 
       <h4>Section 9 (Recommended Image Size: 1400px x 700px)</h4>
       <br />
 
-      <label for="imageInput2" class="choose-image-button">
-        Add Image to Caurosel
-        <input type="file" id="imageInput2" accept="image/*" (change)="getImagePreview($event, 'car1')">
+      <label for="imageInput2" class="choose-image-button" *ngIf="car1_images.length<=car_max_limit">
+        Add Image to Caruosel
+        <input type="file" id="imageInput2" accept="image/*" (change)="getImagePreview($event, 'car1')" multiple>
       </label>
       
 
       <div *ngIf="car1_images.length==0" class="large-img" [ngStyle]="{
                 'background-image': 'url(' + placeHolderThumbUrl + ')',
-                'background-size': bg_size_3_3
+                'background-size': 'cover'
               }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'car1')" />
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'car1')" multiple/>
       </div>
       <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
@@ -639,15 +739,15 @@
       <br />
 
       <div class="large-img" [ngStyle]="{
-          'background-image': 'url(' + section_3_img_3 + ')',
-          'background-size': bg_size_3_3
+          'background-image': 'url(' + preview_img_13 + ')',
+          'background-size': bg_size_13
         }">
-        <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
+        <input type="file" class="form-control" (change)="getImagePreview($event, 'preview_13')" />
       </div>
       <br /><br />
 
       <button type="button" *ngIf="!isLoading; else loader" class="btn btn-outline-dark"
-        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template3')">
+        style="border-radius: 0%; padding: 10px 50px" (click)="submitThings('template4')">
         Save
       </button>
     </div>
@@ -726,6 +826,7 @@
   </div>
   <div class="modal-body" style="padding: 5%">
     <select type="text" class="form-control" placeholder="Set Featured" [(ngModel)]="featuredID">
+      <option [value]="">Select Project to Feature</option>
       <ng-container *ngFor="let work of works">
         <option [value]="work._id">{{ work.title }}</option>
       </ng-container>

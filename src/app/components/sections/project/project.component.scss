@@ -159,6 +159,15 @@
               width: 100%; 
               object-fit:contain;
             }
+
+            .carousel-caption{
+                background: rgba(0, 0, 0, 0.25);
+                width:25rem;
+                border-radius: 15px;
+                text-align: center;
+                margin: auto;
+            }
+
       }
 
       .carousel-buttons {
@@ -185,6 +194,10 @@
 
 
 }
+
+// .carousel-control-prev, .carousel-control-next{
+//     background: #08ff03f9 !important;
+// }
 
 .preview {
     outline: 0.7px solid black;
