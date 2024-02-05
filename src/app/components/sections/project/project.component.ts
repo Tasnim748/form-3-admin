@@ -225,7 +225,7 @@ export class ProjectComponent implements OnInit {
   ) {
     this.updating = true;
     this.openModal(content);
-    this.whichTemplate = 4;
+    this.whichTemplate = 5;
 
     this.title = title;
     this.description_1 = description1;
@@ -663,6 +663,7 @@ export class ProjectComponent implements OnInit {
   }
 
   updateThings() {
+    this.isLoading = true;
     this.mainService
       .putWork({
         title: this.title,
@@ -677,6 +678,7 @@ export class ProjectComponent implements OnInit {
         this.mainService.updateWork(see.data);
         this.modalService.dismissAll('Updated successfully');
       });
+      this.isLoading = false;
   }
 
   mainDelete(_id: string) {

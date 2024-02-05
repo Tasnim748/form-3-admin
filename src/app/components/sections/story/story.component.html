@@ -85,8 +85,8 @@
 				<button class='btn btn-secondary' (click)="AddLinks()">Add</button>
 				<div class="other-project-links" *ngFor="let item of links; let i=index">
 					0{{i+1}}
-					<input type="text" class="form-control" value="{{item.title}}" placeholder="Name of the story" (keydown)="updateLink($event,'title',i)">
-					<input type="text" class="form-control" value="{{item.href}}" placeholder="Link of the story" (keydown)="updateLink($event,'href',i)">
+					<input type="text" class="form-control" value="{{item.title}}" placeholder="Name of the story" (change)="updateLink($event,'title',i)">
+					<input type="text" class="form-control" value="{{item.href}}" placeholder="Link of the story" (change)="updateLink($event,'href',i)">
 					<button class='btn btn-danger  ms-2 link-x-button' (click)="removeLinks(i)"> X </button>
 				</div>
 				
