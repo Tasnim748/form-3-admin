@@ -487,6 +487,10 @@ export class ProjectComponent implements OnInit {
         break;
 
         case 'car0':
+          if(event.target.files.length+this.car0.length>this.car_max_limit){
+            alert(`You can upload a maximum of ${this.car_max_limit} images`);
+            break;
+          }
           this.car0.push(...event.target.files);
         //console.log(this.img_3_3);
           try {
@@ -499,8 +503,13 @@ export class ProjectComponent implements OnInit {
           }
           break;
         case 'car1':
+          if(event.target.files.length+this.car1.length>this.car_max_limit){
+            alert(`You can upload a maximum of ${this.car_max_limit} images`);
+            break;
+          }
           this.car1.push(...event.target.files);
           //console.log(this.img_3_3);
+          
           try {
             for(let file of event.target.files){
               this.car1_images.push(URL.createObjectURL(file))
