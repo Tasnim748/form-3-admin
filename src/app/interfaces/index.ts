@@ -9,6 +9,7 @@ export interface Work {
     _id: string,
     title: string,
     category: string,
+    template:string,
     description1: string,
     photoLink0: string,
     description2: string,

@@ -22,13 +22,7 @@
           <img src="assets/svgs/edit.svg" alt="edit" (click)="
               openModalUpdate(
                 newProject,
-                work.title,
-                work.description1,
-                work.description2,
-                work.description3,
-                work.description4,
-                work.category,
-                work._id
+                work
               )
             " />
           <img src="assets/svgs/delete.svg" alt="delete" (click)="openDelete(deleteProject, work._id)" />
@@ -81,7 +75,7 @@
         </ng-container>
       </ng-container>
     </div>
-    <div class="preview col-3" *ngIf="!updating">
+    <div class="preview col-3">
       <ng-container [ngSwitch]="whichTemplate">
         <img *ngSwitchCase="1" src="https://server.form3a.net/images/Template_1.jpg" width="100%" height="100%"
           alt="" />
@@ -164,23 +158,23 @@
       <br />
       <div class="part-images">
         <div class="indiv-image" [ngStyle]="{
-            'background-image': 'url(' + section_3_img_1 + ')',
-            'background-size': bg_size_3_1
+            'background-image': 'url(' + section_2_img + ')',
+            'background-size': bg_size_2
           }">
-          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
+          <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_2')" />
         </div>
         <div class="indiv-image">
+          <div [ngStyle]="{
+              'background-image': 'url(' + section_3_img_1 + ')',
+              'background-size': bg_size_3_1
+            }">
+            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_1')" />
+          </div>
           <div [ngStyle]="{
               'background-image': 'url(' + section_3_img_2 + ')',
               'background-size': bg_size_3_2
             }">
             <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_2')" />
-          </div>
-          <div [ngStyle]="{
-              'background-image': 'url(' + section_3_img_3 + ')',
-              'background-size': bg_size_3_3
-            }">
-            <input type="file" class="form-control" (change)="getImagePreview($event, 'sec_3_3')" />
           </div>
         </div>
       </div>

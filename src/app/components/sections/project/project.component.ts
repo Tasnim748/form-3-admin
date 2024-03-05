@@ -217,26 +217,51 @@ export class ProjectComponent implements OnInit {
   updatingID!: string;
   openModalUpdate(
     content: TemplateRef<any>,
-    title: string,
-    description1: string,
-    description2: string,
-    description3: string,
-    description4: string,
-    category: string,
-    _id: string
+    work:Work
   ) {
     this.updating = true;
     this.openModal(content);
-    this.whichTemplate = 5;
+    this.whichTemplate = Number(work.template.replace('template',''));
+    console.log(this.whichTemplate);
+    this.title = work.title;
+    this.category=work.category;
+    this.description_1 = work.description1;
+    this.description_2 = work.description2;
+    this.description_3 = work.description3;
+    this.description_4 = work.description4;
+    this.section_1_img = work.photoLink0;
+    this.section_2_img = work.photoLink1;
+    this.section_3_img_1 = work.photoLink2;
+    this.section_3_img_2 = work.photoLink3;
+    this.section_3_img_3 = work.photoLink4;
+    this.section_4_img = work.photoLink5;
+    this.preview_img_7 = work.photoLink6;
+    this.preview_img_8 = work.photoLink7;
+    this.preview_img_9 = work.photoLink8;
+    this.preview_img_10 = work.photoLink9;
+    this.preview_img_11= work.photoLink10;
+    this.preview_img_12 = work.photoLink11;
+    this.preview_img_13 = work.photoLink12;
 
-    this.title = title;
-    this.description_1 = description1;
-    this.description_2 = description2;
-    this.description_3 = description3;
-    this.description_4 = description4;
-    this.category = category;
-    this.updatingID = _id;
+    this.car0_images = work.carousel0;
+    this.car1_images = work.carousel1;
+    this.updatingID = work._id;
 
+    this.bg_size_1 = 'cover';
+    this.bg_size_2 = 'cover';
+    this.bg_size_4 = 'cover';
+    this.bg_size_3_1 = 'cover';
+    this.bg_size_3_2 = 'cover';
+    this.bg_size_3_3 = 'cover';
+    this.bg_size_7 = 'cover';
+    this.bg_size_8 = 'cover';
+    this.bg_size_9 = 'cover';
+    this.bg_size_10 = 'cover';
+    this.bg_size_11 = 'cover';
+    this.bg_size_12 = 'cover';
+    this.bg_size_13 = 'cover';
+
+    
     console.log(this.whichTemplate);
   }
   // end update modal
@@ -556,48 +581,63 @@ export class ProjectComponent implements OnInit {
       // this.car0.length !=0 &&
       // this.car0.length !=0
     ) {
+      let changes:any = {}
+
       if(this.img_1){
         formData.append('imgs', this.img_1);
+        changes['photoLink0']='changed';
       }
       if(this.img_2){
         formData.append('imgs', this.img_2);
+        changes['photoLink1']='changed';
       }
       if(this.img_3_1){
         formData.append('imgs', this.img_3_1);
+        changes['photoLink2']='changed';
       }
       if(this.img_3_2){
         formData.append('imgs', this.img_3_2);
+        changes['photoLink3']='changed';
       }
       if(this.img_3_3){
         formData.append('imgs', this.img_3_3);
+        changes['photoLink4']='changed';
       }
       if(this.img_4){
         formData.append('imgs', this.img_4);
+        changes['photoLink5']='changed';
       }
       
       
 
       if (this.img_7) {
         formData.append('imgs', this.img_7);
+        changes['photoLink6']='changed';
       }
 
       if (this.img_8) {
         formData.append('imgs', this.img_8);
+        changes['photoLink7']='changed';
       }
       if (this.img_9) {
         formData.append('imgs', this.img_9);
+        changes['photoLink8']='changed';
       }
       if (this.img_10) {
         formData.append('imgs', this.img_10);
+        changes['photoLink9']='changed';
       }
       if (this.img_11) {
         formData.append('imgs', this.img_11);
+        changes['photoLink10']='changed';
       }
       if (this.img_12) {
         formData.append('imgs', this.img_12);
+        changes['photoLink11']='changed';
       }
       if (this.img_13) {
         formData.append('imgs', this.img_13);
+        changes['photoLink12']='changed';
       }
 
       for(let i = 0;i<this.car0.length;i++){
@@ -669,13 +709,27 @@ export class ProjectComponent implements OnInit {
           break;
       }
 
-      this.mainService.postWork(formData).subscribe((resp: any) => {
-        console.log(resp);
-        this.mainService.pushwork(resp.data);
+      if(this.updating){
+        formData.append('_id',this.updatingID);
+        formData.append('changes',JSON.stringify(changes))
 
-        this.isLoading = false;
-        this.modalService.dismissAll('Close');
-      });
+
+        this.mainService.putWork(formData).subscribe((resp: any) => {
+          console.log(resp);
+          this.mainService.updateWork(resp.data);
+  
+          this.isLoading = false;
+          this.modalService.dismissAll('Close');
+        });
+      }else{
+        this.mainService.postWork(formData).subscribe((resp: any) => {
+          console.log(resp);
+          this.mainService.pushwork(resp.data);
+  
+          this.isLoading = false;
+          this.modalService.dismissAll('Close');
+        });
+      }
     } else {
       alert('All fields are required');
       this.isLoading = false;
