@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { MainService } from 'src/app/services/main-service/main.service';
 
 @Component({
@@ -7,7 +8,11 @@ import { MainService } from 'src/app/services/main-service/main.service';
   styleUrls: ['./main-body.component.scss']
 })
 export class MainBodyComponent {
-  constructor(private mainService: MainService) {}
+  constructor(private mainService: MainService,private cookieService: CookieService) {
+    if(this.cookieService.check('authToken')){
+      this.isAuthenticated = true;
+    }
+  }
 
   sectionSelected: string|undefined;
 
@@ -27,9 +32,13 @@ export class MainBodyComponent {
         if (response.status == 200) {
           this.isAuthenticated = true
           this.onProcess = false
+          let token = response.token
+          this.cookieService.set('authToken',token,1,undefined, undefined,true);
+
         } else {
+          this.isAuthenticated = false;
           this.onProcess = false;
-          alert('Wrong username or password!');
+          alert('Please Log in with valid credentials');
         }
         this.username = '';
         this.password = '';
@@ -41,5 +50,6 @@ export class MainBodyComponent {
 
   logout() {
     this.isAuthenticated = false;
+    this.cookieService.delete('authToken')
   }
 }

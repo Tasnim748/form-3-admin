@@ -16,6 +16,8 @@ export class ProjectComponent implements OnInit {
   car0_images: string[] = [];
   car1_images: string[] = [];
 
+  file_upload_limit = 2 * 1024 * 1024; // 2 MB
+
   car_max_limit= 15;
 
   placeHolderThumbUrl:string = placeHolderThumb;
@@ -328,6 +330,15 @@ export class ProjectComponent implements OnInit {
 
 
   getImagePreview(event: any, which: string) {
+   let files = event.target.files
+
+    for(let i =0; i<files.length;i++){
+      if(files[i].size>this.file_upload_limit){
+        alert(`Image Size Cannot be over ${this.file_upload_limit/1024/1024} MB`);
+        return;
+      }
+    }
+
     switch (which) {
       case 'sec_1':
         this.img_1 = event.target.files[0];

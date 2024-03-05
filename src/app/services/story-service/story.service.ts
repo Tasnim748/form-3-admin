@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { backURL, Story } from 'src/app/interfaces';
+import { MainService } from '../main-service/main.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class StoryService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private mainService:MainService) { }
 
   // only story
   story: Story[] = [];
@@ -49,14 +50,14 @@ export class StoryService {
   }
   
   addNew(story: any): Observable<any> {
-    return this.http.post<any>(`${backURL}stories`, story);
+    return this.http.post<any>(`${backURL}stories`, story,this.mainService.getHttpOptions());
   }
   
   deletePermanent(_id: string): Observable<any> {
-    return this.http.delete<any>(`${backURL}stories`, { body: { _id: _id } });
+    return this.http.delete<any>(`${backURL}stories/${_id}`, this.mainService.getHttpOptions());
   }
 
   putStory(data: any): Observable<any> {
-    return this.http.put<any>(`${backURL}stories`, data);
+    return this.http.put<any>(`${backURL}stories`, data,this.mainService.getHttpOptions());
   }
 }

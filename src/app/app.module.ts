@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,7 @@ import { ProjectComponent } from './components/sections/project/project.componen
 import { TeamCardComponent } from './components/reusables/team-card/team-card.component';
 import { StoryComponent } from './components/sections/story/story.component';
 import { TestComponent } from './test/test.component';
+import { MainService } from './services/main-service/main.service';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { TestComponent } from './test/test.component';
     DragDropModule
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
+    CookieService,
+    MainService
   ],
   bootstrap: [AppComponent]
 })

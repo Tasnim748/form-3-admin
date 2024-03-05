@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { backURL, Team } from 'src/app/interfaces';
+import { MainService } from '../main-service/main.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class TeamService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private mainService: MainService) { }
 
   // only team
   team: Team[] = [];
@@ -46,18 +47,18 @@ export class TeamService {
   
   // to server
   getTeam(): Observable<Team[]> {
-    return this.http.get<Team[]>(`${backURL}teams`, httpOptions);
+    return this.http.get<Team[]>(`${backURL}teams`, this.mainService.getHttpOptions());
   }
   
   addNew(team: any): Observable<any> {
-    return this.http.post<any>(`${backURL}teams`, team);
+    return this.http.post<any>(`${backURL}teams`, team, this.mainService.getHttpOptions());
   }
   
   deletePermanent(_id: string): Observable<any> {
-    return this.http.delete<any>(`${backURL}teams`, { body: { _id: _id } });
+    return this.http.delete<any>(`${backURL}teams/${_id}`,this.mainService.getHttpOptions());
   }
 
   putMember(data: any): Observable<any> {
-    return this.http.put<any>(`${backURL}teams`, data)
+    return this.http.put<any>(`${backURL}teams`, data, this.mainService.getHttpOptions())
   }
 }

@@ -71,6 +71,7 @@ export class TeamComponent implements OnInit {
 
   imageFieldChange(event: any) {
     this.memberPhoto = event.target.files[0];
+    console.log(this.memberPhoto)
   }
 
   // submission
@@ -83,6 +84,8 @@ export class TeamComponent implements OnInit {
       newTeamInst.append('designation', this.designation);
       newTeamInst.append('img', this.memberPhoto);
       newTeamInst.append('priority', this.priority);
+
+      console.log(newTeamInst);
   
       this.teamService.addNew(newTeamInst).subscribe((see) => {
         this.teamService.pushMember(see.data);

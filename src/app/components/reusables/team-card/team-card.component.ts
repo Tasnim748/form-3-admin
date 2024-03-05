@@ -37,7 +37,7 @@ export class TeamCardComponent {
   ) {}
   
   deleteThis(_id: string, which: string) {
-    this.http.delete(`${backURL}${which}`, { body: { _id: _id } })
+    this.teamService.deletePermanent(_id)
         .subscribe((resp: any) => {
           console.log(resp.status);
           if (which == 'projects') {
