@@ -33,16 +33,21 @@ export class ProjectComponent implements OnInit {
     //config.showNavigationIndicators = false
   }
 
+  car0_deleted:any=[];
+  car1_deleted:any=[]
+
   OnCarClick(element:string,id:number){
     if(element == 'car0'){
       console.log(this.car0_images[id]);
       this.car0_images.splice(id,1);
       this.car0.splice(id,1);
+      this.car0_deleted.push(id);
     }
     else if(element == 'car1'){
       console.log(this.car1_images[id]);
       this.car1_images.splice(id,1);
       this.car1.splice(id,1);
+      this.car1_deleted.push(id);
     }
     
   }
@@ -711,7 +716,9 @@ export class ProjectComponent implements OnInit {
 
       if(this.updating){
         formData.append('_id',this.updatingID);
-        formData.append('changes',JSON.stringify(changes))
+        formData.append('changes',JSON.stringify(changes));
+        formData.append('car0_deleted',JSON.stringify(this.car0_deleted));
+        formData.append('car1_deleted',JSON.stringify(this.car1_deleted));
 
 
         this.mainService.putWork(formData).subscribe((resp: any) => {

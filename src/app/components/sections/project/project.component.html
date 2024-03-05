@@ -140,11 +140,11 @@
       </div>
       <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car0',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -198,11 +198,11 @@
       </div>
       <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car1',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car1',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -298,11 +298,11 @@
       </div>
       <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car0',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -324,11 +324,11 @@
       </div>
       <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car1',i)">
+          <div class="picsum-img-wrapper" >
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car1',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -418,11 +418,11 @@
       </div>
       <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+          <div class="picsum-img-wrapper" >
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car0',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -444,11 +444,11 @@
       </div>
       <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car0',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
@@ -539,28 +539,6 @@
         <input type="file" id="imageInput" accept="image/*" (change)="getImagePreview($event, 'car0')" multiple>
       </label>
       
-
-      <!-- <div class="section-5">
-        <label for="imageInput" class="choose-image-button">
-          hi there
-          <input type="file" id="imageInput" accept="image/*" (change)="onImageSelected($event)">
-        </label>
-
-        <div class="container">
-
-          <div id="selectedImageContainer" class="selected-image-container">
-            <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="selected-image">
-          </div>
-
-
-          <div id="imageList" class="image-list">
-            <ng-container *ngFor="let image of imageList; let i = index" class="image-ite">
-              <img [src]="image" alt="Image" class="image-preview" (click)="displayPreview(i)">
-              <button class="delete-button" (click)="deleteImage(i)"></button>
-            </ng-container>
-          </div>
-        </div>
-      </div> -->
       <div *ngIf="car0_images.length==0" class="large-img" [ngStyle]="{
                 'background-image': 'url(' + placeHolderThumbUrl + ')',
                 'background-size': 'cover'
@@ -569,31 +547,14 @@
       </div>
       <ngb-carousel *ngIf="car0_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car0_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car0',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption"  (click)="OnCarClick('car0',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
-        <!-- <ng-template ngbSlide>
-          <div class="picsum-img-wrapper" (click)="OnCar1Click(1)">
-            <img [src]="images[1]" alt="Random second slide" />
-          </div>
-          <div class="carousel-caption">
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[2]" alt="Random third slide" />
-          </div>
-          <div class="carousel-caption">
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </div>
-        </ng-template> -->
+       
       </ngb-carousel>
       <br>
 
@@ -722,11 +683,11 @@
       </div>
       <ngb-carousel *ngIf="car1_images" class="fixed-carousel">
         <ng-template ngbSlide *ngFor="let img of car1_images;let i=index">
-          <div class="picsum-img-wrapper" (click)="OnCarClick('car1',i)">
+          <div class="picsum-img-wrapper">
             <img [src]="img" alt="Random first slide" class="img-fluid" />
           </div>
-          <div class="carousel-caption">
-            <h3 style="z-index: 5;">Click to delete Image</h3>
+          <div class="carousel-caption" (click)="OnCarClick('car1',i)">
+            <h3 style="z-index: 5;">click to delete</h3>
           </div>
         </ng-template>
       </ngb-carousel>
