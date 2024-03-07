@@ -33,7 +33,7 @@ export class MainBodyComponent {
           this.isAuthenticated = true
           this.onProcess = false
           let token = response.token
-          this.cookieService.set('authToken',token,1,undefined, undefined,true);
+          this.cookieService.set('authToken',token,1);
 
         } else {
           this.isAuthenticated = false;

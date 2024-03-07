@@ -224,6 +224,8 @@ export class ProjectComponent implements OnInit {
     content: TemplateRef<any>,
     work:Work
   ) {
+
+    console.log(work);
     this.updating = true;
     this.openModal(content);
     this.whichTemplate = Number(work.template.replace('template',''));
